@@ -27,8 +27,8 @@ namespace Lemon.BT
             }
 
             BT_Result _result = BT_Result.NONE;
-            List<BT_Node> _waitNodes = new List<BT_Node>();
-            List<BT_Node> _mainNodes = new List<BT_Node>();
+            List<BT_Node> _waitNodes = ListPool<BT_Node>.Get();
+            List<BT_Node> _mainNodes = ListPool<BT_Node>.Get();
             _mainNodes = this.m_pWaitNodes.Count > 0 ? this.m_pWaitNodes : this.children;
             for (int i = 0, length = _mainNodes.Count; i < length; ++i)
             {
@@ -45,11 +45,15 @@ namespace Lemon.BT
                         break;
                 }
             }
+            ListPool<BT_Node>.Release(_mainNodes);
+
 
             // 存在等待节点就返回等待;
             if (_waitNodes.Count > 0)
             {
-                this.m_pWaitNodes = _waitNodes;
+                this.m_pWaitNodes.Clear();
+                this.m_pWaitNodes.AddRange(_waitNodes);
+                ListPool<BT_Node>.Release(_waitNodes);
                 return BT_Result.RUNING;
             }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -19,17 +20,21 @@ namespace Lemon.UI
 
     public sealed partial class UIManager : Singleton<UIManager>
     {
-        //private Dictionary<EUI, UIBase> DictUIBase = new Dictionary<EUI, UIBase>(new EUICompare());
+        private Dictionary<EUI, UIBase> UIBaseDict = new Dictionary<EUI, UIBase>(new EUICompare());
 
         private Stack<UIBase> uIBasesStack = new Stack<UIBase>();
         private Stack<EUI> eUIStack = new Stack<EUI>();
 
         public void Open(EUI eUI, object objs)
         {
-            if (IsOpen(eUI))
+            if (!UIBaseDict.ContainsKey(eUI))
             {
-                UIBase uIBase;
-
+                UIBase uIBase = UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>("");
+                if (uIBase == null)
+                {
+                    QLog.LogError(StringPool.Concat("not find UIBase Script in EUI = ", eUI.ToString()));
+                    return;
+                }
                 uIBasesStack.Pop();
                 return;
             }
