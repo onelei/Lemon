@@ -10,10 +10,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{B33C27E1-036E-F7F5-FED1-5440EE0C9F92}</ProjectGuid>
+    <ProjectGuid>{0C2E8AF3-A141-7186-FD9D-04B2D2741297}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,7 +48,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2018.2.12f1</UnityVersion>
   </PropertyGroup>
@@ -61,39 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Action.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Composite.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Condition.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Debug.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Decorator.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Node.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Parallel.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_ParallelSelector.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_ParallelSequence.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Result.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Select.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Sequence.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Pool\ListPool.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Pool\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Template\MonoClass.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Template\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\Sample\UISample1.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIBase.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIImageBox.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIManager.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIManager_Enum.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Util\Util_Math.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Util\Util_UnityEngine.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\MainManager.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\Manager\SkillSystemManager.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\Manager\SkillSystemManager_TriggerType.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillActionNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillConditionNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillUnitMoveNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\SkillUnit.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\SkillUnitProperty.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\Unit.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\UI\UISkillMain\UISkillMain.cs" />
+    <Compile Include="Assets\Editor\Lemon\LemonEditor_Scene.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/github/Lemon/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -202,6 +170,9 @@
     <Reference Include="UnityEngine.SharedInternalsModule">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.SpatialTrackingModule">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpatialTrackingModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
@@ -289,57 +260,117 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Timeline">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.GoogleAudioSpatializer">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.GoogleAudioSpatializer">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="QLog">
       <HintPath>E:/github/Lemon/Assets/Plugins/QLog.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Core.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Runtime.Serialization.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/System.Runtime.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Xml.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/System.Xml.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/System.Xml.Linq.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/System.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="UnityScript">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/UnityScript.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.dll</HintPath>
     </Reference>
     <Reference Include="UnityScript.Lang">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/UnityScript.Lang.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/UnityScript.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Boo.Lang">
-      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
+      <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{B33C27E1-036E-F7F5-FED1-5440EE0C9F92}</Project>
+      <Name>Assembly-CSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
