@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemon.UI.Sample
 {
-    public sealed class UISample1
+    public sealed class UISample1 : UIBase
     {
 
     }

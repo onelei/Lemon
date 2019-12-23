@@ -61,39 +61,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Action.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Composite.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Condition.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Debug.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Decorator.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Node.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Parallel.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_ParallelSelector.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_ParallelSequence.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Result.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Select.cs" />
-    <Compile Include="Assets\Scripts\Lemon\BT\BT_Sequence.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Pool\ListPool.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Pool\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Template\MonoClass.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Template\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\Sample\UISample1.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIBase.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIImageBox.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIManager.cs" />
-    <Compile Include="Assets\Scripts\Lemon\UI\UIManager_Enum.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Util\Util_Math.cs" />
-    <Compile Include="Assets\Scripts\Lemon\Util\Util_UnityEngine.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\MainManager.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\Manager\SkillSystemManager.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\Manager\SkillSystemManager_TriggerType.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillActionNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillConditionNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillNode\SkillUnitMoveNode.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\SkillUnit.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\SkillUnitProperty.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\SkillUnit\Unit.cs" />
-    <Compile Include="Assets\Scripts\SkillSystem\UI\UISkillMain\UISkillMain.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Action.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Composite.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Condition.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Debug.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Decorator.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Node.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Parallel.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_ParallelSelector.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_ParallelSequence.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Result.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Select.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\BT\BT_Sequence.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Pool\ListPool.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Pool\ObjectPool.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Template\MonoClass.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Template\Singleton.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\UI\Sample\UISample1.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\UI\UIBase.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\UI\UIImageBox.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\UI\UIManager.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\UI\UIManager_Enum.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Util\Util_Math.cs" />
+    <Compile Include="Assets\Lemon\Scripts\Lemon\Util\Util_UnityEngine.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\MainManager.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\Manager\SkillSystemManager.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\Manager\SkillSystemManager_TriggerType.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillNode\SkillActionNode.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillNode\SkillConditionNode.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillNode\SkillUnitMoveNode.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillUnit\SkillUnit.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillUnit\SkillUnitProperty.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\SkillUnit\Unit.cs" />
+    <Compile Include="Assets\Lemon\Scripts\SkillSystem\UI\UISkillMain\UISkillMain.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/github/Lemon/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -304,14 +304,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="QLog">
-      <HintPath>E:/github/Lemon/Assets/Plugins/QLog.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/wanglei11/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="QLog">
+      <HintPath>E:/github/Lemon/Assets/Lemon/Plugins/QLog.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/UnityVersion/2018.2.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
