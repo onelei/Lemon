@@ -32,7 +32,7 @@ namespace Lemon.UI
                 UIBase uIBase = UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>("");
                 if (uIBase == null)
                 {
-                    QLog.LogError(StringPool.Concat("not find UIBase Script in EUI = ", eUI.ToString()));
+                   // QLog.LogError(StringPool.Concat("not find UIBase Script in EUI = ", eUI.ToString()));
                     return;
                 }
                 uIBasesStack.Pop();
