@@ -15,7 +15,7 @@ namespace Lemon.SkillSystem
             dictSkillUnits.Add(ID, skillUnit);
         }
 
-        public void onStart()
+        public void Initial()
         {
 
         }
