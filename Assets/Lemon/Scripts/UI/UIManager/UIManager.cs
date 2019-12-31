@@ -25,6 +25,11 @@ namespace Lemon.UI
         private Stack<UIBase> uIBasesStack = new Stack<UIBase>();
         private Stack<EUI> eUIStack = new Stack<EUI>();
 
+        public void Initial()
+        {
+
+        }
+
         public void Open(EUI eUI, object objs)
         {
             if (!UIBaseDict.ContainsKey(eUI))

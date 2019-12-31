@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Lemon
 {
@@ -13,5 +14,15 @@ namespace Lemon
             }
             return false;
         }
+
+        public static T GetOrAddCompoment<T>(this GameObject gameObject) where T : Component
+        {
+            T component = gameObject.GetComponent<T>();
+            if (component == null)
+            {
+                component = gameObject.AddComponent<T>();
+            }
+            return component;
+        } 
     }
 }

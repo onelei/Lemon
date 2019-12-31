@@ -4,16 +4,15 @@ using System;
 
 namespace Lemon.UI
 {
-    [AddComponentMenu("UI/QText", 10)]
+    [AddComponentMenu("UI/QText")]
     public class QText : Text
     {
+        [HideInInspector]
+        public bool bInit = false;
         /// <summary>
         /// 多语言key
         /// </summary>
         public string key = string.Empty;
-
-        [HideInInspector]
-        public bool bInit = false;
 
         public override string text
         {

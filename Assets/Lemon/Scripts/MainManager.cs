@@ -10,6 +10,7 @@ namespace Lemon
 
         protected override void MonoStart()
         {
+            UIManager.Instance.Initial();
             LanguageManager.Instance.Initial();
             SkillSystemManager.Instance.Initial();
         }

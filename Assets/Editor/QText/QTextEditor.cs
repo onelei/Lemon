@@ -8,50 +8,39 @@ namespace Lemon.UI
     public class QTextEditor : UnityEditor.UI.TextEditor
     {
         [MenuItem("GameObject/UI/QText", false, 2000)]
-        static public void AddText(MenuCommand menuCommand)
-        {
-            GameObject go = new GameObject("QText");
-            if (Selection.gameObjects.Length != 0)
-            {
-                GameObject parent = Selection.gameObjects[0];
-                //设置父节点
-                go.transform.SetParent(parent.transform, false);
-                //设置和父节点一样的层级
-                go.layer = parent.layer;
-            }
-            //设置选中
-            Selection.activeObject = go;
-            QText qText = go.AddComponent<QText>();
+        public static void AddComponent()
+        { 
+            QText component = UtilEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).ToString());
             //设置默认值
-            SetDefaultValue(qText);
+            SetDefaultValue(component);
         }
 
-        QText qText;
+        QText component;
         static bool bInit = false;
         public override void OnInspectorGUI()
         {
-            qText = (QText)target;
+            component = (QText)target;
             base.OnInspectorGUI();
-            qText.key = EditorGUILayout.TextField("KEY", qText.key);
-            if (!qText.bInit)
+            component.key = EditorGUILayout.TextField("KEY", component.key);
+            if (!component.bInit)
             {
-                qText.bInit = true;
-                SetDefaultValue(qText);
+                component.bInit = true;
+                SetDefaultValue(component);
             }
         }
 
-        private static void SetDefaultValue(QText qText)
+        private static void SetDefaultValue(QText component)
         {
-            if (qText == null)
+            if (component == null)
                 return;
-            qText.font = DefaultFont;
-            qText.supportRichText = false;
-            qText.raycastTarget = false;
-            qText.alignment = TextAnchor.MiddleCenter;
-            qText.horizontalOverflow = HorizontalWrapMode.Overflow;
-            qText.color = Color.black;
-            qText.fontSize = 18;
-            qText.text = "QText";
+            component.font = DefaultFont;
+            component.supportRichText = false;
+            component.raycastTarget = false;
+            component.alignment = TextAnchor.MiddleCenter;
+            component.horizontalOverflow = HorizontalWrapMode.Overflow;
+            component.color = Color.black;
+            component.fontSize = 18;
+            component.text = "QText";
         }
 
         private static Font font;
