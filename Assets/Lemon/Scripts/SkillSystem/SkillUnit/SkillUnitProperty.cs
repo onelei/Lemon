@@ -10,6 +10,6 @@ namespace Lemon
         /// <summary>
         /// 移动速度
         /// </summary>
-        public float Speed = 0.01f;
+        public float Speed = 0.5f;
     }
 }

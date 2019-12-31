@@ -16,7 +16,6 @@ namespace Lemon.UI
         }
 
         QText component;
-        static bool bInit = false;
         public override void OnInspectorGUI()
         {
             component = (QText)target;
