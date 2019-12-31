@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224028558021803246}
   - component: {fileID: 222826373166696998}
   - component: {fileID: 114854923987387542}
-  - component: {fileID: 114491098692561446}
+  - component: {fileID: 114426144312613586}
   m_Layer: 5
   m_Name: Button_Close
   m_TagString: Untagged
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f9ec30bf68b7e48995dfaf9c85cfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114491098692561446
+--- !u!114 &114426144312613586
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1195535074056708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c44124ae5599b04bbb4bea62404dfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -108,12 +108,13 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 114854923987387542}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  bInit: 1
 --- !u!114 &114849534900814072
 MonoBehaviour:
   m_ObjectHideFlags: 1
