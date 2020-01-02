@@ -6,7 +6,7 @@ namespace Lemon.UI
     [CustomEditor(typeof(QImage), true)]
     public class QImageEditor : UnityEditor.UI.ImageEditor
     {
-        [MenuItem("GameObject/UI/QImage", false, 1999)]
+        [MenuItem("GameObject/UI/QImage", false, UtilEditor.Priority_QImage)]
         public static void AddComponent()
         {
             QImage component = UtilEditor.ExtensionComponentWhenCreate<QImage>(typeof(QImage).ToString());

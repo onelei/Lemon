@@ -6,7 +6,7 @@ namespace Lemon.UI
     [CustomEditor(typeof(QRawImage), true)]
     public class QRawImageEditor : UnityEditor.UI.RawImageEditor
     {
-        [MenuItem("GameObject/UI/QRawImage", false, 1999)]
+        [MenuItem("GameObject/UI/QRawImage", false, UtilEditor.Priority_QRawImage)]
         public static void AddComponent()
         { 
             QRawImage component = UtilEditor.ExtensionComponentWhenCreate<QRawImage>(typeof(QRawImage).ToString());

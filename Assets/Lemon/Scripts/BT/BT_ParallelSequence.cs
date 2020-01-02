@@ -52,7 +52,6 @@ namespace Lemon.BT
             {
                 this.m_pWaitNodes.Clear();
                 this.m_pWaitNodes.AddRange(_waitNodes);           
-                this.m_pWaitNodes = _waitNodes;
                 ListPool<BT_Node>.Release(_waitNodes);
                 return BT_Result.RUNING;
             }

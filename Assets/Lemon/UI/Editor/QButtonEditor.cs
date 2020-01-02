@@ -6,7 +6,7 @@ namespace Lemon.UI
     [CustomEditor(typeof(QButton), true)]
     public class QButtonEditor : UnityEditor.UI.ButtonEditor
     {
-        [MenuItem("GameObject/UI/QButton", false, 1998)]
+        [MenuItem("GameObject/UI/QButton", false, UtilEditor.Priority_QButton)]
         public static void AddComponent()
         {
             QButton component = UtilEditor.ExtensionComponentWhenCreate<QButton>(typeof(QButton).ToString());

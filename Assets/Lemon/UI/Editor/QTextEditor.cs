@@ -7,9 +7,9 @@ namespace Lemon.UI
     [CanEditMultipleObjects]
     public class QTextEditor : UnityEditor.UI.TextEditor
     {
-        [MenuItem("GameObject/UI/QText", false, 2000)]
+        [MenuItem("GameObject/UI/QText", false, UtilEditor.Priority_QText)]
         public static void AddComponent()
-        { 
+        {
             QText component = UtilEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).ToString());
             //设置默认值
             SetDefaultValue(component);
