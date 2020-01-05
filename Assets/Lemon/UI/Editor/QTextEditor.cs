@@ -1,4 +1,8 @@
-﻿using UnityEditor;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+using UnityEditor;
 using UnityEngine;
 
 namespace Lemon.UI
@@ -8,11 +12,12 @@ namespace Lemon.UI
     public class QTextEditor : UnityEditor.UI.TextEditor
     {
         [MenuItem("GameObject/UI/QText", false, UtilEditor.Priority_QText)]
-        public static void AddComponent()
+        public static QText AddComponent()
         {
-            QText component = UtilEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).ToString());
+            QText component = UtilEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).Name.ToString());
             //设置默认值
             SetDefaultValue(component);
+            return component;
         }
 
         QText component;

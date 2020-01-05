@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemon
 {
-    public class Unit : MonoClass
+    public class Unit : BaseMonoUIClass
     {
 
     }

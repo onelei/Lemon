@@ -4,7 +4,7 @@ using Lemon.SkillSystem;
 
 namespace Lemon
 {
-    public sealed class MainManager : MonoClass
+    public sealed class MainManager : BaseMonoUIClass
     {
         public static float deltaTime;
 

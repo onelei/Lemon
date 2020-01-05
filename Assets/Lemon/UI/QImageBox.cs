@@ -1,22 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-namespace Lemon.UI
+﻿namespace UnityEngine.UI
 {
-    [AddComponentMenu("UI/QRawImage")]
-    public class QRawImage : RawImage
+    public class QImageBox : Graphic
     {
-        [HideInInspector]
-        public bool bInit = false;
-        /// <summary>
-        /// 多语言key
-        /// </summary>
-        public string key = string.Empty;
-
         private GameObject _CacheGameObject = null;
         public GameObject CacheGameObject { get { if (_CacheGameObject == null) { _CacheGameObject = gameObject; } return _CacheGameObject; } }
 
         private Transform _CacheTransform = null;
         public Transform CacheTransform { get { if (_CacheTransform == null) { _CacheTransform = transform; } return _CacheTransform; } }
+
+        public override void Rebuild(CanvasUpdate update)
+        {
+            
+        }
     }
-}
+} 

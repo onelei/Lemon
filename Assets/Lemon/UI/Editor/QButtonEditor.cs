@@ -1,17 +1,25 @@
-﻿using UnityEditor;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Lemon.UI
 {
+    [RequireComponent(typeof(QImageBox))]
     [CustomEditor(typeof(QButton), true)]
     public class QButtonEditor : UnityEditor.UI.ButtonEditor
     {
         [MenuItem("GameObject/UI/QButton", false, UtilEditor.Priority_QButton)]
-        public static void AddComponent()
+        public static QButton AddComponent()
         {
-            QButton component = UtilEditor.ExtensionComponentWhenCreate<QButton>(typeof(QButton).ToString());
+            QImageBox image = UtilEditor.ExtensionComponentWhenCreate<QImageBox>(typeof(QButton).Name.ToString());
+            QButton component = Util.GetOrAddCompoment<QButton>(image.gameObject);
             //设置默认值
             SetDefaultValue(component);
+            return component;
         }
 
         QButton component;
@@ -30,6 +38,8 @@ namespace Lemon.UI
         {
             if (component == null)
                 return;
+            if (component.targetGraphic != null)
+                component.targetGraphic.raycastTarget = true;
         } 
     }
 }

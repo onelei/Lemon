@@ -1,4 +1,8 @@
-﻿using UnityEditor;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+using UnityEditor;
 using UnityEngine;
 
 namespace Lemon.UI
@@ -7,11 +11,12 @@ namespace Lemon.UI
     public class QRawImageEditor : UnityEditor.UI.RawImageEditor
     {
         [MenuItem("GameObject/UI/QRawImage", false, UtilEditor.Priority_QRawImage)]
-        public static void AddComponent()
+        public static QRawImage AddComponent()
         { 
-            QRawImage component = UtilEditor.ExtensionComponentWhenCreate<QRawImage>(typeof(QRawImage).ToString());
+            QRawImage component = UtilEditor.ExtensionComponentWhenCreate<QRawImage>(typeof(QRawImage).Name.ToString());
             //设置默认值
             SetDefaultValue(component);
+            return component;
         }
 
         QRawImage component;

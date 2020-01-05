@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Lemon.UI
 {
-    public class UISkillMain: MonoClass
+    public class UISkillMain: BaseMonoUIClass
     {
         public Button Button_Go;
         public Dropdown dropdown;
