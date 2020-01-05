@@ -38,4 +38,4 @@ QImageBox是Image的无OverDraw版本，适用于仅仅响应Raycast Target。�
 
 ### QToggleGroupButton
 
-![QToggleGroupButton](https://github.com/onelei/Lemon/blob/master/Images/QToggleGroupButton.png)
+![QToggleButtonGroup](https://github.com/onelei/Lemon/blob/master/Images/QToggleButtonGroup.png)
