@@ -1,24 +1,23 @@
 ﻿using Lemon.UI;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Lemon.UI.Sample
 {
     public sealed class UISample : UIBase
     {
         //==自动化变量开始
+        public QButton Button_Close;
 
-        private void Start()
+        
+
+#if UNITY_EDITOR
+        [ContextMenu("GeneratePathEditor")]
+        public override void GeneratePathEditor()
         {
-            List<int> _waitNodes = ListPool<int>.Get();
-            for (int i = 0; i < 1; i++)
-            {
-                _waitNodes.Add(i);
-            }
-
-            List<int> tmp = new List<int>();
-            tmp.AddRange(_waitNodes);
-            ListPool<int>.Release(_waitNodes);
-        }
-         
+            //==自动化路径开始
+            Button_Close = CacheTransform.Find("GameObject/GameObject (1)/Button_Close/").GetComponent<QButton>();
+           
+        }        
+#endif
     }
 }

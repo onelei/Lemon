@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System.Text;
 
 namespace Lemon
 {
@@ -27,6 +28,28 @@ namespace Lemon
             //设置选中
             Selection.activeObject = go;
             return go.AddComponent<T>();
+        }
+
+
+        public static string GetPath(Transform child, Transform parent)
+        {
+            string path = string.Empty;
+            if (child == null || parent == null || child.name == parent.name)
+                return path;
+            Transform tmp = child;
+            while (tmp != null)
+            {
+                if (tmp != parent)
+                {
+                    path = StringPool.Concat(tmp.name, "/", path);
+                    tmp = tmp.parent;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return path;
         }
     }
 }

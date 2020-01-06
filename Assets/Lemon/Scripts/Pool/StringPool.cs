@@ -7,21 +7,37 @@ namespace Lemon
 {
     public class StringPool
     {
-        private static StringBuilder stringBuilder = new StringBuilder();
+        private static StringBuilder CommonStringBuilder = new StringBuilder();
+        private static StringBuilder InternalStringBuilder = new StringBuilder();
+
+        public static StringBuilder GetStringBuilder()
+        {
+            CommonStringBuilder.Remove(0, CommonStringBuilder.Length);
+            return CommonStringBuilder;
+        }
 
         public static string Concat(string s1, string s2)
         {
-            stringBuilder.Remove(0, stringBuilder.Length);
-            stringBuilder.Append(s1);
-            stringBuilder.Append(s2);
-            return stringBuilder.ToString();
+            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
+            InternalStringBuilder.Append(s1);
+            InternalStringBuilder.Append(s2);
+            return InternalStringBuilder.ToString();
+        }
+
+        public static string Concat(string s1, string s2, string s3)
+        {
+            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
+            InternalStringBuilder.Append(s1);
+            InternalStringBuilder.Append(s2);
+            InternalStringBuilder.Append(s3);
+            return InternalStringBuilder.ToString();
         }
 
         public static string Format(string src, params object[] args)
         {
-            stringBuilder.Remove(0, stringBuilder.Length);
-            stringBuilder.AppendFormat(src, args);
-            return stringBuilder.ToString();
+            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
+            InternalStringBuilder.AppendFormat(src, args);
+            return InternalStringBuilder.ToString();
         } 
 
     }
