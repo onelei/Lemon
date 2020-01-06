@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lemon.UI
 {
-    public class UIBase : BaseMonoUIClass
+    public partial class UIBase : BaseMonoUIClass
     {
         public virtual bool IsCanEnter() { return true; }
 
