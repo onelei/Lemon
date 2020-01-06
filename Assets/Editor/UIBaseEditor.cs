@@ -23,15 +23,7 @@ namespace Lemon.UI
             }
             GUILayout.EndHorizontal();
 
-            base.OnInspectorGUI(); 
-        }
-
-        private static void SetDefaultValue(QButton component)
-        {
-            if (component == null)
-                return;
-            if (component.targetGraphic != null)
-                component.targetGraphic.raycastTarget = true;
+            base.OnInspectorGUI();
         } 
     }
 }
