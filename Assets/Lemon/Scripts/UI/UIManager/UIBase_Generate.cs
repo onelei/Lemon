@@ -62,15 +62,11 @@ namespace Lemon.UI
             //添加自动化的变量路径
             stringBuilder = StringPool.GetStringBuilder();
             stringBuilder.Append("\n");
-            //stringBuilder.Append("        [ContextMenu(\"GeneratePathEditor\")]\n");
-            //stringBuilder.Append("        public void GeneratePathEditor()\n");
-            //stringBuilder.Append("        {\n");
 
             for (int i = 0; i < qButtons.Count; i++)
             {
                 stringBuilder.Append("            " + qButtons[i].name + " = " + "CacheTransform.Find(\"" + UtilEditor.GetPath(qButtons[i], CacheTransform) + "\").GetComponent<QButton>();\n");
             }
-            //stringBuilder.Append("        }\n");
 
             ClassText = ClassText.Replace(KEY_PATH, KEY_PATH + stringBuilder.ToString());
 
