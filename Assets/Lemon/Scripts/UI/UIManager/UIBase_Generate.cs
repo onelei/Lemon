@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEditor;
-using Lemon;
 
 namespace Lemon.UI
 {
@@ -13,11 +11,16 @@ namespace Lemon.UI
         private const string KEY_VARIABLE = "//==自动化变量开始";
         private const string KEY_PATH = "//==自动化路径开始";
 
+        private string UI_TEMPLATE_PATH
+        {
+            get
+            {
+                return Application.dataPath + "/Lemon/Scripts/UI/UITemplate/UITemplate_Generate.cs";
+            }
+        }
+
         private List<Transform> qImages = new List<Transform>();
         private List<Transform> qButtons = new List<Transform>();
-
-        private StreamWriter streamWriter;
-        private StreamReader streamReader;
 
         [ContextMenu("GenerateCodeEditor")]
         public void GenerateCodeEditor()
@@ -35,20 +38,15 @@ namespace Lemon.UI
                 }
             }
 
-            string ClassText = "";
             //读取
-
-            UIBase uIBase = GetComponent<UIBase>();
-            string scriptName = uIBase.name;
-            string path2 = Application.dataPath + "/Lemon/Scripts/UI/" + scriptName + "/" + scriptName + ".cs";
-
-            streamReader = new StreamReader(path2, Encoding.UTF8);
-            ClassText = streamReader.ReadToEnd();
+            StreamReader streamReader = new StreamReader(UI_TEMPLATE_PATH, Encoding.UTF8);
+            string ClassText = streamReader.ReadToEnd();
             streamReader.Close();
 
             //生成
-            streamWriter = new StreamWriter(path2, false, Encoding.UTF8);
-
+            UIBase uIBase = GetComponent<UIBase>();
+            string uiBasePath = StringPool.Format(Application.dataPath + "/Lemon/Scripts/UI/{0}/{1}_Generate.cs", uIBase.name, uIBase.name);
+            StreamWriter streamWriter = new StreamWriter(uiBasePath, false, Encoding.UTF8);
 
             //添加自动化的变量
             StringBuilder stringBuilder = StringPool.GetStringBuilder();
@@ -58,8 +56,9 @@ namespace Lemon.UI
                 stringBuilder.Append("        public QButton " + qButtons[i].name + ";");
                 stringBuilder.Append("\n");
             }
+            ClassText = ClassText.Replace("UITemplate", uIBase.name);
             ClassText = ClassText.Replace(KEY_VARIABLE, KEY_VARIABLE + stringBuilder.ToString());
-
+            
             //添加自动化的变量路径
             stringBuilder = StringPool.GetStringBuilder();
             stringBuilder.Append("\n");
@@ -78,12 +77,12 @@ namespace Lemon.UI
             streamWriter.Write(ClassText);
             streamWriter.Close();
 
-            AssetDatabase.Refresh();
+            UnityEditor.AssetDatabase.Refresh();
         }
 
         [ContextMenu("GeneratePathEditor")]
         public virtual void GeneratePathEditor()
-        { 
+        {
 
         }
 #endif
