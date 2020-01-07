@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using System;
 
 namespace Lemon.UI
 {
@@ -19,22 +20,38 @@ namespace Lemon.UI
             }
         }
 
-        private List<Transform> qImages = new List<Transform>();
-        private List<Transform> qButtons = new List<Transform>();
+        /// <summary>
+        /// 自动化组件的前缀和类型
+        /// </summary>
+        private Dictionary<string, Type> name_type = new Dictionary<string, Type>()
+        {
+            {"QButton", typeof(QButton)},
+            {"QRawImage", typeof(QRawImage)},
+            {"QImage", typeof(QImage)},
+            {"QText", typeof(QText)},
+            {"QToggleButton", typeof(QToggleButton)},
+            {"QToggleButtonGroup", typeof(QToggleButtonGroup)}
+        };
+
+        private Dictionary<Transform, Type> transformGroup = new Dictionary<Transform, Type>();
 
         [ContextMenu("GenerateCodeEditor")]
         public void GenerateCodeEditor()
         {
-            qButtons.Clear();
-            qImages.Clear();
+            transformGroup.Clear();
             Transform[] children = CacheTransform.GetComponentsInChildren<Transform>(true);
             for (int i = 0; i < children.Length; i++)
             {
                 Transform child = children[i];
-                string name = child.name;
-                if (name.StartsWith("Button_"))
+                string fullName = child.name;
+                string[] tmpName = fullName.Split('_');
+                if (tmpName.Length > 1)
                 {
-                    qButtons.Add(child);
+                    Type type;
+                    if (name_type.TryGetValue(tmpName[0], out type))
+                    {
+                        transformGroup.Add(child, type);
+                    }
                 }
             }
 
@@ -51,21 +68,27 @@ namespace Lemon.UI
             //添加自动化的变量
             StringBuilder stringBuilder = StringPool.GetStringBuilder();
             stringBuilder.Append("\n");
-            for (int i = 0; i < qButtons.Count; i++)
+            Dictionary<Transform, Type>.Enumerator enumerator = transformGroup.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                stringBuilder.Append("        public QButton " + qButtons[i].name + ";");
+                string name = enumerator.Current.Key.name;
+                Type type = enumerator.Current.Value;
+                stringBuilder.Append("        public " + type.Name + " " + name + "; ");
                 stringBuilder.Append("\n");
             }
+
             ClassText = ClassText.Replace("UITemplate", uIBase.name);
             ClassText = ClassText.Replace(KEY_VARIABLE, KEY_VARIABLE + stringBuilder.ToString());
-            
+
             //添加自动化的变量路径
             stringBuilder = StringPool.GetStringBuilder();
             stringBuilder.Append("\n");
-
-            for (int i = 0; i < qButtons.Count; i++)
+            enumerator = transformGroup.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                stringBuilder.Append("            " + qButtons[i].name + " = " + "CacheTransform.Find(\"" + UtilEditor.GetPath(qButtons[i], CacheTransform) + "\").GetComponent<QButton>();\n");
+                Transform childTransform = enumerator.Current.Key;
+                Type type = enumerator.Current.Value;
+                stringBuilder.Append("            " + childTransform.name + " = " + "CacheTransform.Find(\"" + UtilEditor.GetPath(childTransform, CacheTransform) + "\").GetComponent<" + type.Name + ">();\n");
             }
 
             ClassText = ClassText.Replace(KEY_PATH, KEY_PATH + stringBuilder.ToString());

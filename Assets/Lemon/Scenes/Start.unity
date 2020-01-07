@@ -515,6 +515,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1237151504336734, guid: 4932bdfba0371aa43b1df456d85b2aa3, type: 2}
+      propertyPath: m_Name
+      value: QButton_Close
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114398000660005276, guid: 4932bdfba0371aa43b1df456d85b2aa3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 4932bdfba0371aa43b1df456d85b2aa3, type: 2}
@@ -535,13 +539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec6f1669d42920448aa8a6909bd396e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button_Close: {fileID: 1011111566}
---- !u!114 &1011111566 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114438262144143632, guid: 4932bdfba0371aa43b1df456d85b2aa3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1002299254}
-  m_Script: {fileID: 11500000, guid: 5c44124ae5599b04bbb4bea62404dfdb, type: 3}
 --- !u!1 &1477796244
 GameObject:
   m_ObjectHideFlags: 0
