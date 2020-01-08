@@ -8,7 +8,9 @@ namespace Lemon.UI
     public enum EUI
     {
         Default = 0,
-        UIMain,
-        
+        UISample,
+        UISampleTwo,
+        UISampleThree,
+        Max,
     }
 }

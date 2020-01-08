@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Lemon.UI
 {
-    public sealed partial class UISample : UIBase
+    public sealed partial class UISampleThree : UIBase
     {
         public override void OnEnter()
         {
             base.OnEnter();
             QButton_Close.onClick.AddListener(() =>
             {
-                UIManager.Instance.Open(EUI.UISampleTwo);
+                UIManager.Instance.Close(EUI.UISampleThree);
             });
         }
     }
