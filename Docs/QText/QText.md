@@ -182,7 +182,7 @@ base.OnInspectorGUI();
 
 优先绘制Text组件，然后绘制一个TextField用来显示多语言所需要的KEY。
 
-然后我们通过SetDefaultValue函数来重写Text组件里面的参数。详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI，欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
+然后我们通过SetDefaultValue函数来重写Text组件里面的参数。详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI 欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
 
 
   
