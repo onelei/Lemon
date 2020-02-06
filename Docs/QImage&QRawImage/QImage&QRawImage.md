@@ -195,5 +195,5 @@ namespace Lemon.UI
 }
 ```
 
-详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI，欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
+详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI 欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
 
