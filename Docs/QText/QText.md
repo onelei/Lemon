@@ -4,7 +4,7 @@
 
 ## QText
 
-![img](https://mmbiz.qpic.cn/mmbiz_png/lUlPpjU9ZFrbciaXDtrYRBauUAlabYn2MgUScS6gw5Xde4CiaCbPhCsX4FSKF3ubBVDMicN2aqTjDjsqentb33iaNg/640?wx_fmt=png)
+![QText](./Images/QText.png)
 
 如上图QText组件所示，我们可以设置默认的字体，默认取消RichText的勾选，默认取消RaycastTarget的勾选，最关键的还是下面的KEY字段。多语言只需要在这个KEY填写该文本对应的多语言KEY，代码里面可以根据语言来读取KEY对应的Value用来显示。下面看如何实现。
 
