@@ -91,7 +91,7 @@ namespace Lemon.UI
 
 ## QToggleButton
 
-![QToggleButton](C:\Users\ahlei\Desktop\博客\QButton&QToggleButton&QToggleButtonGroup\Images\QToggleButton.png)
+![QToggleButton](./Images/QToggleButton.png)
 
 QToggleButton组件顾名思义就是用于按钮的切换。比如我们遇到的音量的on/off开关。QToggleButton组件挂在最上层，同时挂上没有Overdraw的QImageBox组件（QImageBox可以翻阅之前的文章有介绍）。箭头所指的Normal和Choose按钮就是用来切换显示使用的，既然有了切换显示功能，当然还需要有切换之后的回调函数的设置功能，详情如下。
 
@@ -300,7 +300,7 @@ QToggleButton是用来控制一个按钮的切换状态，但是当我们需要�
 
 ## QToggleButtonGroup
 
-![QToggleButtonGroup](C:\Users\ahlei\Desktop\博客\QButton&QToggleButton&QToggleButtonGroup\Images\QToggleButtonGroup.png)
+![QToggleButtonGroup](./Images/QToggleButtonGroup.png)
 
 我们通过一个index表明当前是选中了第几个按钮，图中的按钮Choose表明立刻设置选中。编辑器下面index可以通过Choose按钮动态设置。
 
@@ -466,5 +466,5 @@ namespace Lemon.UI
 } 
 ```
 
-详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI，欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
+详细代码参见：https://github.com/onelei/Lemon/tree/master/Assets/QGUI 欢迎Star。如果本文对你有所帮助，欢迎赞赏~~~
 
