@@ -4,11 +4,11 @@
 
 ## QImage
 
-![QImage](C:\Users\ahlei\Desktop\博客\QImage&QRawImage\Images\QImage.png)
+![QImage](./Images/QImage.png)
 
 ## QRawImage
 
-![QRawImage](C:\Users\ahlei\Desktop\博客\QImage&QRawImage\Images\QRawImage.png)
+![QRawImage](./Images/QRawImage.png)
 
 图QImage组件和QRawImage组件都使用一个KEY用来统一处理多语言图片的显示。将Image进行封装也是为了后面为Image的默认值的修改可以统一设置，便于管理，下面看如何实现。
 
