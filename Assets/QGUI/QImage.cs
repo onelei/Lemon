@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Lemon.UI

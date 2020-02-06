@@ -1,4 +1,8 @@
-﻿namespace UnityEngine.UI
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+namespace UnityEngine.UI
 {
     public class QImageBox : Graphic
     {
