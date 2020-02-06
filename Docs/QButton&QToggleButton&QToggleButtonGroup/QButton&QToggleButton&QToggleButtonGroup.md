@@ -4,7 +4,7 @@
 
 ## QButton
 
-![QButton](C:\Users\ahlei\Desktop\博客\QButton&QToggleButton&QToggleButtonGroup\Images\QButton.png)
+![QButton](./Images/QButton.png)
 
 QButton组件比较简单，就是针对UGUI的Button按钮的封装。同时挂上没有Overdraw的QImageBox组件（QImageBox可以翻阅之前的文章有介绍）。
 
