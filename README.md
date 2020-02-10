@@ -3,4 +3,4 @@ Unity游戏开发框架-包含常用UI组件、UIManager管理、自定义日志
 
 ## 文档
 
-* [QGUI(UI组件和UGUI界面自动化)](./Docs/Readme.md)
+* [QGUI](./Docs/Readme.md) ：UI组件和UGUI界面自动化相关
