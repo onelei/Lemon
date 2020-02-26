@@ -1,44 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
 using System.Text;
 
-namespace Lemon
+public static class StringPool
 {
-    public class StringPool
+    private static int MaxCount = 100;
+
+    // Object pool to avoid allocations.
+    private static readonly ObjectPool<StringBuilder> Pool = new ObjectPool<StringBuilder>(Clear, null);
+    static void Clear(StringBuilder s)
     {
-        private static StringBuilder CommonStringBuilder = new StringBuilder();
-        private static StringBuilder InternalStringBuilder = new StringBuilder();
-
-        public static StringBuilder GetStringBuilder()
+        if (Pool.countAll >= MaxCount)
         {
-            CommonStringBuilder.Remove(0, CommonStringBuilder.Length);
-            return CommonStringBuilder;
+            QLog.LogError("Pool count reach to MaxCount.");
+        }
+        s.Remove(0, s.Length);
+    }
+
+    public static StringBuilder GetStringBuilder()
+    {
+        StringBuilder stringBuilder = Pool.Get();
+        return stringBuilder;
+    }
+
+    public static void Release(StringBuilder toRelease)
+    {
+        if (Pool.countAll >= MaxCount)
+        {
+            QLog.LogError("Pool count reach to MaxCount.");
         }
 
-        public static string Concat(string s1, string s2)
-        {
-            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
-            InternalStringBuilder.Append(s1);
-            InternalStringBuilder.Append(s2);
-            return InternalStringBuilder.ToString();
-        }
+        Pool.Release(toRelease);
+    }
 
-        public static string Concat(string s1, string s2, string s3)
-        {
-            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
-            InternalStringBuilder.Append(s1);
-            InternalStringBuilder.Append(s2);
-            InternalStringBuilder.Append(s3);
-            return InternalStringBuilder.ToString();
-        }
+    public static string Concat(string s1, string s2)
+    {
+        StringBuilder stringBuilder = Pool.Get();
+        stringBuilder.Append(s1);
+        stringBuilder.Append(s2);
+        string result = stringBuilder.ToString();
+        Release(stringBuilder);
+        return result;
+    }
 
-        public static string Format(string src, params object[] args)
-        {
-            InternalStringBuilder.Remove(0, InternalStringBuilder.Length);
-            InternalStringBuilder.AppendFormat(src, args);
-            return InternalStringBuilder.ToString();
-        } 
+    public static string Concat(string s1, string s2, string s3)
+    {
+        StringBuilder stringBuilder = Pool.Get();
+        stringBuilder.Append(s1);
+        stringBuilder.Append(s2);
+        stringBuilder.Append(s3);
+        string result = stringBuilder.ToString();
+        Release(stringBuilder);
+        return result;
+    }
 
+    public static string Format(string src, params object[] args)
+    {
+        StringBuilder stringBuilder = Pool.Get();
+        stringBuilder.Remove(0, stringBuilder.Length);
+        stringBuilder.AppendFormat(src, args);
+        string result = stringBuilder.ToString();
+        Release(stringBuilder);
+        return result;
     }
 }
