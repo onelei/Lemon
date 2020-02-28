@@ -7,6 +7,7 @@ namespace Lemon.UI
 {
     public partial class UIBase : BaseMonoUIClass
     {
+        [HideInInspector]
         public EUI eUI;
 
         public EUIDepth eUIDepth { get; private set; }

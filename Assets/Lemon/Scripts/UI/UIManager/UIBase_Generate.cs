@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿/**
+*   Author：onelei
+*   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
+*/
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
