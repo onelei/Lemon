@@ -12,6 +12,7 @@ namespace Lemon.UI
     public class QText : Text
     {
         [HideInInspector]
+        [SerializeField]
         public bool bInit = false;
         /// <summary>
         /// 多语言key
