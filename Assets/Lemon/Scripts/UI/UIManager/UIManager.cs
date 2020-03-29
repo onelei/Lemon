@@ -74,7 +74,6 @@ namespace Lemon.UI
         public void Initial()
         {
             UGUI = GameObject.FindObjectOfType<UGUIGroup>();
-
             Open(EUI.UISample);
         }
 

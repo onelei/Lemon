@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -10,25 +10,36 @@ namespace Lemon.UI
     [CustomEditor(typeof(QRawImage), true)]
     public class QRawImageEditor : UnityEditor.UI.RawImageEditor
     {
-        [MenuItem("GameObject/UI/QRawImage", false, UtilEditor.Priority_QRawImage)]
+        [MenuItem("GameObject/UI/QRawImage", false, UtilityEditor.Priority_QRawImage)]
         public static QRawImage AddComponent()
         { 
-            QRawImage component = UtilEditor.ExtensionComponentWhenCreate<QRawImage>(typeof(QRawImage).Name.ToString());
+            QRawImage component = UtilityEditor.ExtensionComponentWhenCreate<QRawImage>(typeof(QRawImage).Name.ToString());
             //设置默认值
             SetDefaultValue(component);
             return component;
         }
 
-        QRawImage component;
+        private QRawImage RawImageComponent;
+        private SerializedProperty key;
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            RawImageComponent = (QRawImage)target;
+            key = serializedObject.FindProperty("key");
+        }
+
         public override void OnInspectorGUI()
         {
-            component = (QRawImage)target;
             base.OnInspectorGUI();
-            component.key = EditorGUILayout.TextField("KEY", component.key);
-            if (!component.bInit)
+            UtilityEditor.PropertyField("KEY", key);
+            if (GUI.changed)
             {
-                component.bInit = true;
-                SetDefaultValue(component);
+                serializedObject.ApplyModifiedProperties();
+            }
+            if (!RawImageComponent.bInit)
+            {
+                RawImageComponent.bInit = true;
+                SetDefaultValue(RawImageComponent);
             }
         }
 

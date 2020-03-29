@@ -22,7 +22,7 @@ namespace Lemon.UI
             {
                 if (_CacheCanvas == null)
                 {
-                    _CacheCanvas = Util.GetOrAddCompoment<Canvas>(CacheGameObject);
+                    _CacheCanvas = Utility.GetOrAddCompoment<Canvas>(CacheGameObject);
                 }
                 return _CacheCanvas;
             }
@@ -35,7 +35,7 @@ namespace Lemon.UI
             {
                 if (_CacheGraphicRaycaster == null)
                 {
-                    _CacheGraphicRaycaster = Util.GetOrAddCompoment<GraphicRaycaster>(CacheGameObject);
+                    _CacheGraphicRaycaster = Utility.GetOrAddCompoment<GraphicRaycaster>(CacheGameObject);
                 }
                 return _CacheGraphicRaycaster;
             }

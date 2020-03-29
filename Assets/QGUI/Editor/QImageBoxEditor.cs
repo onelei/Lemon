@@ -10,10 +10,10 @@ namespace UnityEngine.UI
     [CustomEditor(typeof(QImageBox), true)]
     public class QImageBoxEditor : UnityEditor.UI.GraphicEditor
     {
-        [MenuItem("GameObject/UI/QImageBox", false, UtilEditor.Priority_QImageBox)]
+        [MenuItem("GameObject/UI/QImageBox", false, UtilityEditor.Priority_QImageBox)]
         public static QImageBox AddComponent()
         {
-            QImageBox component = UtilEditor.ExtensionComponentWhenCreate<QImageBox>(typeof(QImageBox).Name.ToString());
+            QImageBox component = UtilityEditor.ExtensionComponentWhenCreate<QImageBox>(typeof(QImageBox).Name.ToString());
             return component;
         }
     }

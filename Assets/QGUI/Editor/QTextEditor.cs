@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -11,25 +11,39 @@ namespace Lemon.UI
     [CanEditMultipleObjects]
     public class QTextEditor : UnityEditor.UI.TextEditor
     {
-        [MenuItem("GameObject/UI/QText", false, UtilEditor.Priority_QText)]
+        [MenuItem("GameObject/UI/QText", false, UtilityEditor.Priority_QText)]
         public static QText AddComponent()
         {
-            QText component = UtilEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).Name.ToString());
+            QText component = UtilityEditor.ExtensionComponentWhenCreate<QText>(typeof(QText).Name.ToString());
             //设置默认值
             SetDefaultValue(component);
             return component;
         }
 
-        QText component;
+        private QText TextComponent;
+        private SerializedProperty key;
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            TextComponent = (QText)target;
+            key = serializedObject.FindProperty("key");
+        }
+
         public override void OnInspectorGUI()
         {
-            component = (QText)target;
             base.OnInspectorGUI();
-            component.key = EditorGUILayout.TextField("KEY", component.key);
-            if (!component.bInit)
+            UtilityEditor.PropertyField("KEY", key);
+
+            if (!TextComponent.bInit)
             {
-                component.bInit = true;
-                SetDefaultValue(component);
+                TextComponent.bInit = true;
+                SetDefaultValue(TextComponent);
+            }
+
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
             }
         }
 

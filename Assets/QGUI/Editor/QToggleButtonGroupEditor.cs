@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -11,10 +11,10 @@ namespace Lemon.UI
     [CustomEditor(typeof(QToggleButtonGroup))]
     public class QToggleButtonGroupEditor : Editor
     {
-        [MenuItem("GameObject/UI/QToggleButtonGroup", false, UtilEditor.Priority_QToggleButtonGroup)]
+        [MenuItem("GameObject/UI/QToggleButtonGroup", false, UtilityEditor.Priority_QToggleButtonGroup)]
         public static QToggleButtonGroup AddComponent()
         {
-            QToggleButtonGroup component = UtilEditor.ExtensionComponentWhenCreate<QToggleButtonGroup>(typeof(QToggleButtonGroup).Name.ToString());
+            QToggleButtonGroup component = UtilityEditor.ExtensionComponentWhenCreate<QToggleButtonGroup>(typeof(QToggleButtonGroup).Name.ToString());
             component.list.Clear();
 
             for (int i = 0; i < 2; i++)
@@ -41,6 +41,11 @@ namespace Lemon.UI
             GUILayout.EndHorizontal();
 
             base.OnInspectorGUI();
+
+            if(GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
     }
 }

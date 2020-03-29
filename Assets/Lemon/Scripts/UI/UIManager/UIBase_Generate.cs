@@ -92,7 +92,7 @@ namespace Lemon.UI
             {
                 Transform childTransform = enumerator.Current.Key;
                 Type type = enumerator.Current.Value;
-                stringBuilder.Append("            " + childTransform.name + " = " + "CacheTransform.Find(\"" + UtilEditor.GetPath(childTransform, CacheTransform) + "\").GetComponent<" + type.Name + ">();\n");
+                stringBuilder.Append("            " + childTransform.name + " = " + "CacheTransform.Find(\"" + UtilityEditor.GetPath(childTransform, CacheTransform) + "\").GetComponent<" + type.Name + ">();\n");
             }
 
             ClassText = ClassText.Replace(KEY_PATH, KEY_PATH + stringBuilder.ToString());

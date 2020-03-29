@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -12,42 +12,56 @@ namespace Lemon.UI
     [CustomEditor(typeof(QToggleButton), true)]
     public class QToggleButtonEditor : QButtonEditor
     {
-        [MenuItem("GameObject/UI/QToggleButton", false, UtilEditor.Priority_QToggleButton)]
+        [MenuItem("GameObject/UI/QToggleButton", false, UtilityEditor.Priority_QToggleButton)]
         public static new QToggleButton AddComponent()
         {
             QImageBox image = QImageBoxEditor.AddComponent();
             image.raycastTarget = true;
 
-            QToggleButton component = Util.GetOrAddCompoment<QToggleButton>(image.CacheGameObject);
+            QToggleButton component = Utility.GetOrAddCompoment<QToggleButton>(image.CacheGameObject);
             component.name = typeof(QToggleButton).Name.ToString();
             //设置默认值
             SetDefaultValue(component);
             return component;
         }
 
-        QToggleButton component;
+        private QToggleButton ToggleButtonComponent;
+        private SerializedProperty Normal, Choose;
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            ToggleButtonComponent = (QToggleButton)target;
+            Normal = serializedObject.FindProperty("Normal");
+            Choose = serializedObject.FindProperty("Choose");
+        }
+
         public override void OnInspectorGUI()
         {
-            component = (QToggleButton)target;
-            component.Normal = (GameObject)EditorGUILayout.ObjectField("Normal", component.Normal, typeof(GameObject), true);
-            component.Choose = (GameObject)EditorGUILayout.ObjectField("Choose", component.Choose, typeof(GameObject), true);
+            UtilityEditor.PropertyField("Normal", Normal);
+            UtilityEditor.PropertyField("Choose", Choose);
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Normal"))
             {
-                component.SetToggleEditor();
+                ToggleButtonComponent.SetToggleEditor(false);
             }
             if (GUILayout.Button("Choose"))
             {
-                component.SetToggleEditor(true);
+                ToggleButtonComponent.SetToggleEditor(true);
             }
             GUILayout.EndHorizontal();
 
             //base.OnInspectorGUI();
-            if (!component.bInit)
+            if (!ToggleButtonComponent.bInit)
             {
-                component.bInit = true;
-                SetDefaultValue(component);
+                ToggleButtonComponent.bInit = true;
+                SetDefaultValue(ToggleButtonComponent);
+            }
+
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
             }
         }
 
@@ -57,7 +71,7 @@ namespace Lemon.UI
                 return;
             if (component.targetGraphic != null)
                 component.targetGraphic.raycastTarget = true;
-            component.SetToggleEditor();
+            component.SetToggleEditor(false);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -11,7 +11,9 @@ namespace Lemon.UI
     [AddComponentMenu("UI/QToggleButton")]
     public class QToggleButton : QButton
     {
+        [SerializeField]
         public GameObject Normal;
+        [SerializeField]
         public GameObject Choose;
 
         //Group
@@ -93,10 +95,9 @@ namespace Lemon.UI
 
 #if UNITY_EDITOR
         [ContextMenu("SetToggleEditor")]
-        public void SetToggleEditor(bool bChoose = false)
+        public void SetToggleEditor(bool bChoose)
         {
-            this.bChoose = bChoose;
-            SetData(bChoose, null);
+            SetChoose(bChoose);
         }
 #endif
     }

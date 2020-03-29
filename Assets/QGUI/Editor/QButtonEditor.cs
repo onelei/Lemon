@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -12,32 +12,34 @@ namespace Lemon.UI
     [CustomEditor(typeof(QButton), true)]
     public class QButtonEditor : UnityEditor.UI.ButtonEditor
     {
-        [MenuItem("GameObject/UI/QButton", false, UtilEditor.Priority_QButton)]
+        [MenuItem("GameObject/UI/QButton", false, UtilityEditor.Priority_QButton)]
         public static QButton AddComponent()
         {
-            QImageBox image = UtilEditor.ExtensionComponentWhenCreate<QImageBox>(typeof(QButton).Name.ToString());
-            QButton component = Util.GetOrAddCompoment<QButton>(image.gameObject);
+            QImageBox image = UtilityEditor.ExtensionComponentWhenCreate<QImageBox>(typeof(QButton).Name.ToString());
+            QButton component = Utility.GetOrAddCompoment<QButton>(image.gameObject);
             //设置默认值
             SetDefaultValue(component);
             return component;
         }
 
-        QButton component;
+        private QButton ButtonComponent;
         public override void OnInspectorGUI()
         {
-            component = (QButton)target;
+            ButtonComponent = (QButton)target;
             base.OnInspectorGUI();
-            if (!component.bInit)
+            if (!ButtonComponent.bInit)
             {
-                component.bInit = true;
-                SetDefaultValue(component);
+                ButtonComponent.bInit = true;
+                SetDefaultValue(ButtonComponent);
+            }
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
             }
         }
 
         private static void SetDefaultValue(QButton component)
-        {
-            if (component == null)
-                return;
+        { 
             if (component.targetGraphic != null)
                 component.targetGraphic.raycastTarget = true;
         } 

@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -16,6 +16,7 @@ namespace Lemon.UI
         /// <summary>
         /// 多语言key
         /// </summary>
+        [SerializeField]
         public string key = string.Empty;
 
         private GameObject _CacheGameObject = null;

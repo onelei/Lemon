@@ -1,4 +1,4 @@
-﻿/**
+/**
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
@@ -11,6 +11,7 @@ namespace Lemon.UI
     public class QButton : Button
     {
         [HideInInspector]
+        [SerializeField]
         public bool bInit = false;
 
         private GameObject _CacheGameObject = null;

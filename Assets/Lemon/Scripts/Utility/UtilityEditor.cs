@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Text;
 
 namespace Lemon
 {
-    public static partial class UtilEditor
+    public static partial class UtilityEditor
     {
         public const int Priority_QText = 2000;
         public const int Priority_QRawImage = Priority_QText - 6;
@@ -50,6 +50,14 @@ namespace Lemon
                 }
             }
             return path;
+        }
+
+        public static void PropertyField(string label, SerializedProperty serializedProperty)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(label);
+            EditorGUILayout.PropertyField(serializedProperty, GUIContent.none);
+            GUILayout.EndHorizontal();
         }
     }
 }
