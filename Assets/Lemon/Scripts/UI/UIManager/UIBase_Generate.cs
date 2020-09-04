@@ -10,7 +10,7 @@ using System;
 
 namespace Lemon.UI
 {
-    public partial class UIBase : BaseMonoUIClass
+    public partial class UIBase : BaseUIBehavior
     {
 #if UNITY_EDITOR
         private const string KEY_VARIABLE = "//==自动化变量开始";

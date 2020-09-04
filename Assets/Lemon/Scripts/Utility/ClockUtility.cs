@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Lemon
 {
-    public class ClockUtility : BaseMonoClass
+    public class ClockUtility : BaseBehavior
     {
         private static ClockUtility _instance;
         public static ClockUtility Instance

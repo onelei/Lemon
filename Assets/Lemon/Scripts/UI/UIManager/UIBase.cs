@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lemon.UI
 {
-    public partial class UIBase : BaseMonoUIClass
+    public partial class UIBase : BaseUIBehavior
     {
         [HideInInspector]
         public EUI eUI;

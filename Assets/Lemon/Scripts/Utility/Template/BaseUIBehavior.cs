@@ -2,7 +2,7 @@
 
 namespace Lemon
 { 
-    public class BaseMonoUIClass : BaseMonoClass
+    public class BaseUIBehavior : BaseBehavior
     { 
         protected virtual void MonoStart() { }
         protected virtual void MonoUpdate() { }

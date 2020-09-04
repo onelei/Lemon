@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Lemon
 {
-    public class CoroutineUtility : BaseMonoClass
+    public class CoroutineUtility : BaseBehavior
     {
         private static CoroutineUtility _instance;
         public static CoroutineUtility Instance

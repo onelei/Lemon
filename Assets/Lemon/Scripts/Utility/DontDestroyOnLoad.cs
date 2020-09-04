@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Lemon.UI
 {
-    public class DontDestroyOnLoad : BaseMonoClass
+    public class DontDestroyOnLoad : BaseBehavior
     {
         private void Awake()
         {

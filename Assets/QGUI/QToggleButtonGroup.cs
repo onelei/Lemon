@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace Lemon.UI
 {
     [AddComponentMenu("UI/QToggleButtonGroup")]
-    public class QToggleButtonGroup : BaseMonoClass
+    public class QToggleButtonGroup : BaseBehavior
     {
         [SerializeField]
         public List<QToggleButton> list = new List<QToggleButton>();
