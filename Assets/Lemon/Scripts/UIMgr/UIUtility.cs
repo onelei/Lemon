@@ -35,10 +35,38 @@ namespace Lemon
             }
             return null;
         }
-         
-        public static void SetActive(VariableBehavior behavior, string propertyName)
-        {
 
+        public static GameObject GetGameObject(VariableBehavior behavior, string propertyName)
+        {
+            if (behavior == null)
+                return null;
+
+            VariableBehavior.Property property;
+            if (behavior.TryGetProperty(propertyName, out property))
+            {
+                return property.GameObject;
+            }
+            return null;
+        }
+
+        public static void SetActive(VariableBehavior behavior, string propertyName, bool bActive)
+        {
+            if (behavior == null)
+            {
+                return;
+            }
+
+            var Obj = GetGameObject(behavior, propertyName);
+            SetActive(Obj, bActive);
+        }
+
+        public static void SetActive(GameObject go, bool bActive)
+        {
+            if (go == null)
+                return;
+            if (go.activeSelf == bActive)
+                return;
+            go.SetActive(bActive);
         }
     }
 }

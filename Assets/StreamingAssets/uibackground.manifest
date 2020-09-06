@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 894546935
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3f7be61e6f8c36a1345e3a973fb767af
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Art/Images/UIBackGround/UI_1003.png
+- Assets/Art/Images/UIBackGround/UI_1001.png
+- Assets/Art/Images/UIBackGround/UI_1002.png
+Dependencies: []
