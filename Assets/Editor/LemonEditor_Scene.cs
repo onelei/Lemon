@@ -7,9 +7,9 @@ namespace Lemon
     public class LemonEditor_Scene : UnityEditor.Editor
     {
         [MenuItem("Lemon/场景/开始 _F5")]
-        private static void OpenScene_Start()
+        private static void OpenScene_Entry()
         {
-            OpenScene(Application.dataPath + "/Lemon/Scenes/Start.unity");
+            OpenScene(Application.dataPath + "/Lemon/Scenes/Entry.unity");
         }
 
         [MenuItem("Lemon/场景/技能编辑器 _F6")]

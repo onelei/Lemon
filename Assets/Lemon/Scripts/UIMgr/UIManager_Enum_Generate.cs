@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Lemon
 {
-    public enum EUI
+    public enum UIName
     {
         Default = 0,
         UISample,

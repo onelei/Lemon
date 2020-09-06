@@ -8,9 +8,9 @@ namespace Lemon
     public partial class UIBase : UIBaseBehavior
     {
         [HideInInspector]
-        public EUI eUI;
+        public string UIName;
 
-        public EUIDepth eUIDepth { get; private set; }
+        public int UINameType { get; private set; }
         public int Depth { get; private set; }
 
         public object[] objs { get; private set; }
@@ -46,10 +46,10 @@ namespace Lemon
             this.objs = objs;
         }
 
-        public void SetDepth(EUI eUI, EUIDepth eUIDepth, int Depth)
+   
+        public void SetDepth(string UIName, int Depth)
         {
-            this.eUI = eUI;
-            this.eUIDepth = eUIDepth;
+            this.UIName = UIName;
             this.Depth = Depth;
 
             CacheCanvas.sortingOrder = Depth;

@@ -18,9 +18,8 @@ require("Common.Debug")
 require("Common.LuaDef")
 require("Common.EventMgr")
 
+require("GameStage.GameStageUtility")
 
-require("Common.TimeMgr")
-require("Common.LuaBehavior")
-require("Common.StepAction.StepUtility")
+
 
 return LuaInit

@@ -14,7 +14,7 @@ function TimeMgr.Init()
     __Time_Pool = {}
     __Target = {}
     realtimeSinceStartup = CS.UnityEngine.Time.realtimeSinceStartup
-    Debug.Log("TimeMgr.Init")
+    ---Debug.Log("TimeMgr.Init")
 end
 
 function TimeMgr.Add(time_delay,func_delay,target)
@@ -50,7 +50,7 @@ function TimeMgr.RemoveByTarget(target)
 end
 
 function TimeMgr.Update(_realtimeSinceStartup)
-    Debug.Log("TimeMgr.Update ",_realtimeSinceStartup)
+    ---Debug.Log("TimeMgr.Update ",_realtimeSinceStartup)
     realtimeSinceStartup = _realtimeSinceStartup
     local deltaTime = realtimeSinceStartup - _realtimeSinceStartup
     realtimeSinceStartup = _realtimeSinceStartup

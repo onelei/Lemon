@@ -1,4 +1,4 @@
-﻿using Lemon.UI;
+﻿
 using UnityEngine;
 using Lemon.SkillSystem;
 
@@ -10,7 +10,7 @@ namespace Lemon
 
         protected override void MonoStart()
         {
-            UIMgr.Instance.Initial();
+            UIMgr.Instance.Init();
             LanguageManager.Instance.Initial();
             SkillSystemManager.Instance.Initial();
         }
