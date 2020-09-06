@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [AddComponentMenu("UI/QImage")]
     public class QImage : Image

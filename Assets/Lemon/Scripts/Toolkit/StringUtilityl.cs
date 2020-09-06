@@ -4,7 +4,7 @@
 */
 using System.Text;
 
-public static class StringPool
+public static class StringUtility
 {
     private static int MaxCount = 100;
 

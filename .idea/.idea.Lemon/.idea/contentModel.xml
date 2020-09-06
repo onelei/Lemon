@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ahlei\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ahlei\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Lemon.-2118760646.00" t="ExcludeRecursive" />
+    <e p="E:\Project\Lemon" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="EmmyLuaService.cs" t="Include" />
+          <e p="LemonEditor_Scene.cs" t="Include" />
+          <e p="UIBaseEditor.cs" t="Include" />
+        </e>
+        <e p="Lemon" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Base" t="Include">
+              <e p="BaseBehavior.cs" t="Include" />
+            </e>
+            <e p="Entry.cs" t="Include" />
+            <e p="EventMgr.cs" t="Include" />
+            <e p="Extend" t="Include">
+              <e p="UnityEngine_Extend.cs" t="Include" />
+            </e>
+            <e p="GameStage" t="Include">
+              <e p="GameStageBase.cs" t="Include" />
+              <e p="GameStageBattle.cs" t="Include" />
+              <e p="GameStageCity.cs" t="Include" />
+              <e p="GameStageEntry.cs" t="Include" />
+              <e p="GameStageHotUpdate.cs" t="Include" />
+              <e p="GameStageLogin.cs" t="Include" />
+              <e p="GameStageMgr.cs" t="Include" />
+            </e>
+            <e p="LuaBehaviour.cs" t="Include" />
+            <e p="LuaLoader.cs" t="Include" />
+            <e p="LuaMgr.cs" t="Include" />
+            <e p="MainManager.cs" t="Include" />
+            <e p="SkillSystem" t="Include">
+              <e p="Manager" t="Include">
+                <e p="SkillSystemManager.cs" t="Include" />
+                <e p="SkillSystemManager_TriggerType.cs" t="Include" />
+              </e>
+              <e p="SkillNode" t="Include">
+                <e p="SkillActionNode.cs" t="Include" />
+                <e p="SkillConditionNode.cs" t="Include" />
+                <e p="SkillUnitMoveNode.cs" t="Include" />
+              </e>
+              <e p="SkillUnit" t="Include">
+                <e p="SkillUnit.cs" t="Include" />
+                <e p="SkillUnitProperty.cs" t="Include" />
+                <e p="Unit.cs" t="Include" />
+              </e>
+              <e p="UI" t="Include">
+                <e p="UISkillMain" t="Include">
+                  <e p="UISkillMain.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Toolkit" t="Include">
+              <e p="DontDestroyOnLoad.cs" t="Include" />
+              <e p="ListPool.cs" t="Include" />
+              <e p="ObjectPool.cs" t="Include" />
+              <e p="Singleton.cs" t="Include" />
+              <e p="StringUtilityl.cs" t="Include" />
+              <e p="ThreadString.cs" t="Include" />
+            </e>
+            <e p="UI" t="Include">
+              <e p="LanguageManager" t="Include">
+                <e p="LanguageManager.cs" t="Include" />
+              </e>
+              <e p="UISample" t="Include">
+                <e p="UISample.cs" t="Include" />
+                <e p="UISample_Generate.cs" t="Include" />
+              </e>
+              <e p="UISampleThree" t="Include">
+                <e p="UISampleThree.cs" t="Include" />
+                <e p="UISampleThree_Generate.cs" t="Include" />
+              </e>
+              <e p="UISampleTwo" t="Include">
+                <e p="UISampleTwo.cs" t="Include" />
+                <e p="UISampleTwo_Generate.cs" t="Include" />
+              </e>
+              <e p="UITemplate" t="Include">
+                <e p="UITemplate.cs" t="Include" />
+                <e p="UITemplate_Generate.cs" t="Include" />
+              </e>
+            </e>
+            <e p="UIMgr" t="Include">
+              <e p="Editor" t="Include">
+                <e p="VariableBehaviorEditor.cs" t="Include" />
+              </e>
+              <e p="UGUIGroup.cs" t="Include" />
+              <e p="UIBase.cs" t="Include" />
+              <e p="UIBase_Generate.cs" t="Include" />
+              <e p="UIBaseBehavior.cs" t="Include" />
+              <e p="UIManager_Enum_Generate.cs" t="Include" />
+              <e p="UIMgr.cs" t="Include" />
+              <e p="VariableBehavior.cs" t="Include" />
+            </e>
+            <e p="Utility" t="Include">
+              <e p="BT" t="Include">
+                <e p="BT_Action.cs" t="Include" />
+                <e p="BT_Composite.cs" t="Include" />
+                <e p="BT_Condition.cs" t="Include" />
+                <e p="BT_Debug.cs" t="Include" />
+                <e p="BT_Decorator.cs" t="Include" />
+                <e p="BT_Node.cs" t="Include" />
+                <e p="BT_Parallel.cs" t="Include" />
+                <e p="BT_ParallelSelector.cs" t="Include" />
+                <e p="BT_ParallelSequence.cs" t="Include" />
+                <e p="BT_Result.cs" t="Include" />
+                <e p="BT_Select.cs" t="Include" />
+                <e p="BT_Sequence.cs" t="Include" />
+              </e>
+              <e p="ClockUtility.cs" t="Include" />
+              <e p="CoroutineUtility.cs" t="Include" />
+              <e p="CsvHelper" t="Include">
+                <e p="CsvFile.cs" t="Include" />
+                <e p="CsvReader.cs" t="Include" />
+                <e p="CsvWriter.cs" t="Include" />
+              </e>
+              <e p="InstantiatePool.cs" t="Include" />
+              <e p="Utility.cs" t="Include" />
+              <e p="Utility_Action.cs" t="Include" />
+              <e p="UtilityEditor.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="QGUI" t="Include">
+          <e p="Editor" t="Include">
+            <e p="QButtonEditor.cs" t="Include" />
+            <e p="QImageBoxEditor.cs" t="Include" />
+            <e p="QImageEditor.cs" t="Include" />
+            <e p="QRawImageEditor.cs" t="Include" />
+            <e p="QTextEditor.cs" t="Include" />
+            <e p="QToggleButtonEditor.cs" t="Include" />
+            <e p="QToggleButtonGroupEditor.cs" t="Include" />
+          </e>
+          <e p="QButton.cs" t="Include" />
+          <e p="QImage.cs" t="Include" />
+          <e p="QImageBox.cs" t="Include" />
+          <e p="QRawImage.cs" t="Include" />
+          <e p="QText.cs" t="Include" />
+          <e p="QToggleButton.cs" t="Include" />
+          <e p="QToggleButtonGroup.cs" t="Include" />
+        </e>
+        <e p="XLua" t="Include">
+          <e p="CHANGELOG.txt" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="ExampleConfig.cs" t="Include" />
+          </e>
+          <e p="Examples" t="Include">
+            <e p="01_Helloworld" t="Include">
+              <e p="Helloworld.cs" t="Include" />
+            </e>
+            <e p="02_U3DScripting" t="Include">
+              <e p="LuaBehaviour.cs" t="Include" />
+              <e p="LuaTestScript.lua.txt" t="Include" />
+            </e>
+            <e p="03_UIEvent" t="Include">
+              <e p="ButtonInteraction.lua.txt" t="Include" />
+            </e>
+            <e p="04_LuaObjectOrented" t="Include">
+              <e p="InvokeLua.cs" t="Include" />
+            </e>
+            <e p="05_NoGc" t="Include">
+              <e p="NoGc.cs" t="Include" />
+            </e>
+            <e p="06_Coroutine" t="Include">
+              <e p="Coroutine_Runner.cs" t="Include" />
+              <e p="CoroutineTest.cs" t="Include" />
+              <e p="Resources" t="Include">
+                <e p="coruntine_test.lua.txt" t="Include" />
+                <e p="cs_coroutine.lua.txt" t="Include" />
+              </e>
+            </e>
+            <e p="07_AsyncTest" t="Include">
+              <e p="AsyncTest.cs" t="Include" />
+              <e p="MessageBox.cs" t="Include" />
+              <e p="Resources" t="Include">
+                <e p="async_test.lua.txt" t="Include" />
+                <e p="message_box.lua.txt" t="Include" />
+              </e>
+            </e>
+            <e p="08_Hotfix" t="Include">
+              <e p="HotfixTest.cs" t="Include" />
+              <e p="HotfixTest2.cs" t="Include" />
+              <e p="StatefullTest.cs" t="Include" />
+            </e>
+            <e p="09_GenericMethod" t="Include">
+              <e p="Foo.cs" t="Include" />
+              <e p="GenericMethodExample.cs" t="Include" />
+            </e>
+            <e p="10_SignatureLoader" t="Include">
+              <e p="SignatureLoaderTest.cs" t="Include" />
+            </e>
+            <e p="11_RawObject" t="Include">
+              <e p="RawObjectTest.cs" t="Include" />
+            </e>
+            <e p="12_ReImplementInLua" t="Include">
+              <e p="ReImplementInLua.cs" t="Include" />
+            </e>
+            <e p="13_BuildFromCLI" t="Include">
+              <e p="Editor" t="Include">
+                <e p="BuildFromCLI.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ExampleGenConfig.cs" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="perf" t="Include">
+              <e p="memory.lua.txt" t="Include" />
+              <e p="profiler.lua.txt" t="Include" />
+            </e>
+            <e p="tdr" t="Include">
+              <e p="tdr.lua.txt" t="Include" />
+            </e>
+            <e p="XLua" t="Include">
+              <e p="util.lua.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Src" t="Include">
+            <e p="CodeEmit.cs" t="Include" />
+            <e p="CopyByValue.cs" t="Include" />
+            <e p="DelegateBridge.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="Generator.cs" t="Include" />
+              <e p="Hotfix.cs" t="Include" />
+              <e p="LinkXmlGen" t="Include">
+                <e p="LinkXmlGen.cs" t="Include" />
+                <e p="LinkXmlGen.tpl.txt" t="Include" />
+              </e>
+              <e p="Template" t="Include">
+                <e p="LuaClassWrap.tpl.txt" t="Include" />
+                <e p="LuaClassWrapGCM.tpl.txt" t="Include" />
+                <e p="LuaDelegateBridge.tpl.txt" t="Include" />
+                <e p="LuaDelegateWrap.tpl.txt" t="Include" />
+                <e p="LuaEnumWrap.tpl.txt" t="Include" />
+                <e p="LuaEnumWrapGCM.tpl.txt" t="Include" />
+                <e p="LuaInterfaceBridge.tpl.txt" t="Include" />
+                <e p="LuaRegister.tpl.txt" t="Include" />
+                <e p="LuaRegisterGCM.tpl.txt" t="Include" />
+                <e p="LuaWrapPusher.tpl.txt" t="Include" />
+                <e p="PackUnpack.tpl.txt" t="Include" />
+                <e p="TemplateCommon.lua.txt" t="Include" />
+              </e>
+              <e p="TemplateRef.cs" t="Include" />
+            </e>
+            <e p="GenAttributes.cs" t="Include" />
+            <e p="GenericDelegateBridge.cs" t="Include" />
+            <e p="InternalGlobals.cs" t="Include" />
+            <e p="LuaBase.cs" t="Include" />
+            <e p="LuaDLL.cs" t="Include" />
+            <e p="LuaEnv.cs" t="Include" />
+            <e p="LuaException.cs" t="Include" />
+            <e p="LuaFunction.cs" t="Include" />
+            <e p="LuaTable.cs" t="Include" />
+            <e p="MethodWarpsCache.cs" t="Include" />
+            <e p="ObjectCasters.cs" t="Include" />
+            <e p="ObjectPool.cs" t="Include" />
+            <e p="ObjectTranslator.cs" t="Include" />
+            <e p="ObjectTranslatorPool.cs" t="Include" />
+            <e p="RawObject.cs" t="Include" />
+            <e p="SignatureLoader.cs" t="Include" />
+            <e p="StaticLuaCallbacks.cs" t="Include" />
+            <e p="TemplateEngine" t="Include">
+              <e p="TemplateEngine.cs" t="Include" />
+            </e>
+            <e p="TypeExtensions.cs" t="Include" />
+            <e p="Utils.cs" t="Include" />
+          </e>
+          <e p="Tutorial" t="Include">
+            <e p="CSharpCallLua" t="Include">
+              <e p="CSCallLua.cs" t="Include" />
+            </e>
+            <e p="LoadLuaScript" t="Include">
+              <e p="ByFile" t="Include">
+                <e p="ByFile.cs" t="Include" />
+                <e p="Resources" t="Include">
+                  <e p="byfile.lua.txt" t="Include" />
+                </e>
+              </e>
+              <e p="ByString" t="Include">
+                <e p="ByString.cs" t="Include" />
+              </e>
+              <e p="Loader" t="Include">
+                <e p="CustomLoader.cs" t="Include" />
+              </e>
+            </e>
+            <e p="LuaCallCSharp" t="Include">
+              <e p="LuaCallCs.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Lemon.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

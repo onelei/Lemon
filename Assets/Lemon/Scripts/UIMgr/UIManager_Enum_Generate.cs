@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lemon.UI
+namespace Lemon
 {
     public enum EUI
     {

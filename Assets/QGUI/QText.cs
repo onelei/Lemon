@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [AddComponentMenu("UI/QText")]
     public class QText : Text

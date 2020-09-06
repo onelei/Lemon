@@ -71,7 +71,7 @@ function LuaBehavior.Get(go)
     end
 end
 
-function LuaBehavior.Test(go)
+function LuaBehavior.Test(value)
     local gameObject = CS.UnityEngine.GameObject("LuaBehavior")
     LuaBehavior.AddUpdate(gameObject,function ()
         TimeMgr.Update()

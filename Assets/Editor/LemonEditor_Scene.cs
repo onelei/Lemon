@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Lemon
 {
-    public class LemonEditor_Scene : Editor
+    public class LemonEditor_Scene : UnityEditor.Editor
     {
         [MenuItem("Lemon/场景/开始 _F5")]
         private static void OpenScene_Start()

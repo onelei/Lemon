@@ -6,10 +6,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [CustomEditor(typeof(QToggleButtonGroup))]
-    public class QToggleButtonGroupEditor : Editor
+    public class QToggleButtonGroupEditor : UnityEditor.Editor
     {
         [MenuItem("GameObject/UI/QToggleButtonGroup", false, UtilityEditor.Priority_QToggleButtonGroup)]
         public static QToggleButtonGroup AddComponent()

@@ -9,13 +9,13 @@ namespace Lemon.UI
 {
     public sealed partial class UISampleThree : UIBase
     {
-        public override void OnEnter()
+        public override void OnOpen()
         {
-            base.OnEnter();
-            QButton_Close.onClick.AddListener(() =>
-            {
-                UIManager.Instance.Close(EUI.UISampleThree);
-            });
+            base.OnOpen();
+            //QButton_Close.onClick.AddListener(() =>
+            //{
+            //    UIMgr.Instance.Close(EUI.UISampleThree);
+            //});
         }
     }
 }

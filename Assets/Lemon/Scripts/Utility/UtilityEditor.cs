@@ -41,7 +41,7 @@ namespace Lemon
             {
                 if (tmp != parent)
                 {
-                    path = StringPool.Concat(tmp.name, "/", path);
+                    path = StringUtility.Concat(tmp.name, "/", path);
                     tmp = tmp.parent;
                 }
                 else

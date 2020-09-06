@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.UI
+namespace Lemon
 {
     public sealed class UGUIGroup : BaseBehavior
     {

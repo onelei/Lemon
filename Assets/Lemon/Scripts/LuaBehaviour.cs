@@ -13,17 +13,17 @@ namespace Lemon
          
         private void OnEnable()
         {
-            EventMgr.CallLuaFunc(ENABLE, CacheGameObject);
+            EventMgr.Send(ENABLE, CacheGameObject);
         }
 
         private void Update()
         {
-            EventMgr.CallLuaFunc(UPDATE, CacheGameObject);
+            EventMgr.Send(UPDATE, CacheGameObject);
         }
 
         private void LateUpdate()
         {
-            EventMgr.CallLuaFunc(LATEUPDATE, CacheGameObject);
+            EventMgr.Send(LATEUPDATE, CacheGameObject);
         }
     }
 }

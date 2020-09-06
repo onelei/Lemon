@@ -4,6 +4,7 @@ using XLua;
 
 namespace Lemon
 {
+    [CSharpCallLua]
     [LuaCallCSharp]
     public static class LuaMgr
     {
@@ -12,7 +13,13 @@ namespace Lemon
         private static LuaTable scriptEnv = luaenv.NewTable();
 
         [CSharpCallLua]
-        public delegate void BehaviorSendToLua(GameObject go);
+        public delegate void lua_func_object(object args);
+        [CSharpCallLua]
+        public delegate void lua_func_string(string args);
+        [CSharpCallLua]
+        public delegate void lua_func_float(float args);
+        [CSharpCallLua]
+        public delegate void lua_func_gameobject(GameObject args);
 
         public static void Init()
         {
@@ -24,11 +31,45 @@ namespace Lemon
             luaenv.DoString(luaText);
         }
 
-        public static void Set(string key, GameObject value)
+        public static void GetInPath(string func_name, object value)
         {
-            BehaviorSendToLua f = luaenv.Global.GetInPath<BehaviorSendToLua>(key);
-            f(value);
-            //scriptEnv.Set(key, value);
+            var func = luaenv.Global.GetInPath<lua_func_object>(func_name);
+            if (func != null)
+            {
+                func(value);
+            }
+        }
+
+        //public static void GetInPath(string func_name, float value)
+        //{
+        //    var func = luaenv.Global.GetInPath<lua_func_float>(func_name);
+        //    if (func != null)
+        //    {
+        //        func(value);
+        //    }
+        //}
+
+        //public static void GetInPath(string func_name, string value)
+        //{
+        //    var func = luaenv.Global.GetInPath<lua_func_string>(func_name);
+        //    if (func != null)
+        //    {
+        //        func(value);
+        //    }
+        //}
+
+        //public static void GetInPath(string func_name, GameObject value)
+        //{
+        //    var func = luaenv.Global.GetInPath<lua_func_gameobject>(func_name);
+        //    if (func != null)
+        //    {
+        //        func(value);
+        //    }
+        //}
+
+        public static void SetInPath<T>(string func_name, T value)
+        {
+            luaenv.Global.SetInPath(func_name, value);
         }
 
         public static void AddLoader(string luaFileName)
@@ -56,7 +97,7 @@ namespace Lemon
 #if UNITY_EDITOR
             luaenv.AddLoader(new SignatureLoader(PUBLIC_KEY, (ref string filepath) =>
             {
-                filepath = Application.dataPath + "/TanghuluGames/LuaProject/" + filepath.Replace('.', '/') + ".lua";
+                filepath = Application.dataPath + "/LuaProject/" + filepath.Replace('.', '/') + ".lua";
                 if (File.Exists(filepath))
                 {
                     return File.ReadAllBytes(filepath);

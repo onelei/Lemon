@@ -6,15 +6,15 @@
 
 TimeMgr = {}
 
-local unity_Time = CS.UnityEngine.Time
-local realtimeSinceStartup
-
 local __Time_Pool
 local __Target
+local realtimeSinceStartup
 
 function TimeMgr.Init()
     __Time_Pool = {}
     __Target = {}
+    realtimeSinceStartup = CS.UnityEngine.Time.realtimeSinceStartup
+    Debug.Log("TimeMgr.Init")
 end
 
 function TimeMgr.Add(time_delay,func_delay,target)
@@ -49,8 +49,12 @@ function TimeMgr.RemoveByTarget(target)
     end
 end
 
-function TimeMgr.Update()
-    local deltaTime = unity_Time.time
+function TimeMgr.Update(_realtimeSinceStartup)
+    Debug.Log("TimeMgr.Update ",_realtimeSinceStartup)
+    realtimeSinceStartup = _realtimeSinceStartup
+    local deltaTime = realtimeSinceStartup - _realtimeSinceStartup
+    realtimeSinceStartup = _realtimeSinceStartup
+
     for k, v in pairs(__Time_Pool) do
         local delayPool = v
         for i = #delayPool, 1, -1 do
@@ -80,7 +84,7 @@ function TimeMgr.RemoveDelayItem(delayItem)
 end
 
 function TimeMgr.GetRealtimeSinceStartup()
-    return unity_Time.realtimeSinceStartup
+    return realtimeSinceStartup
 end
 
 TimeMgr.Init()

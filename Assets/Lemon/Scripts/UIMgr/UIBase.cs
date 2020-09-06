@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
-    public partial class UIBase : BaseUIBehavior
+    public partial class UIBase : UIBaseBehavior
     {
         [HideInInspector]
         public EUI eUI;
@@ -55,15 +55,15 @@ namespace Lemon.UI
             CacheCanvas.sortingOrder = Depth;
         }
 
-        public virtual bool IsCanEnter() { return true; }
+        public virtual bool IsCanOpen() { return true; }
 
-        public virtual void OnEnter() { }
+        public virtual void OnOpen() { }
 
         public virtual void OnPause() { }
 
         public virtual void OnResume() { }
 
-        public virtual void OnExit() { }
+        public virtual void OnClose() { }
 
     }
 }

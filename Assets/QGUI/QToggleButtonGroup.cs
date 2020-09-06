@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [AddComponentMenu("UI/QToggleButtonGroup")]
     public class QToggleButtonGroup : BaseBehavior
@@ -43,7 +43,7 @@ namespace Lemon.UI
 
         public void OnGroup(int pre, int cur)
         {
-            QLog.LogEditor(StringPool.Format("点击pre = {0}, cur = {1}.", pre, cur));
+            QLog.LogEditor(StringUtility.Format("点击pre = {0}, cur = {1}.", pre, cur));
 
             //设置所有组件的显示隐藏
             int length = list.Count;

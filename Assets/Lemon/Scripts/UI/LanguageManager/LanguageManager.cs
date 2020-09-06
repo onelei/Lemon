@@ -2,7 +2,7 @@
 using System.Collections.Generic;
  
 
-namespace Lemon.UI
+namespace Lemon
 {
     public enum ELanguageType
     {
@@ -33,7 +33,7 @@ namespace Lemon.UI
             {
                 return value;
             }
-            QLog.LogError(StringPool.Concat("没有找到对应的多语言Key = ", key));
+            QLog.LogError(StringUtility.Concat("没有找到对应的多语言Key = ", key));
             return key;
         }
     }

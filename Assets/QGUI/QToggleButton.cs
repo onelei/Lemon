@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [AddComponentMenu("UI/QToggleButton")]
     public class QToggleButton : QButton

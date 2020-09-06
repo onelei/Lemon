@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [RequireComponent(typeof(QImageBox))]
     [CustomEditor(typeof(QToggleButton), true)]

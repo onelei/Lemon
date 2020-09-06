@@ -8,9 +8,9 @@ using System.Text;
 using UnityEngine;
 using System;
 
-namespace Lemon.UI
+namespace Lemon
 {
-    public partial class UIBase : BaseUIBehavior
+    public partial class UIBase : UIBaseBehavior
     {
 #if UNITY_EDITOR
         private const string KEY_VARIABLE = "//==自动化变量开始";
@@ -66,11 +66,11 @@ namespace Lemon.UI
 
             //生成
             UIBase uIBase = GetComponent<UIBase>();
-            string uiBasePath = StringPool.Format(Application.dataPath + "/Lemon/Scripts/UI/{0}/{1}_Generate.cs", uIBase.name, uIBase.name);
+            string uiBasePath = StringUtility.Format(Application.dataPath + "/Lemon/Scripts/UI/{0}/{1}_Generate.cs", uIBase.name, uIBase.name);
             StreamWriter streamWriter = new StreamWriter(uiBasePath, false, Encoding.UTF8);
 
             //添加自动化的变量
-            StringBuilder stringBuilder = StringPool.GetStringBuilder();
+            StringBuilder stringBuilder = StringUtility.GetStringBuilder();
             stringBuilder.Append("\n");
             Dictionary<Transform, Type>.Enumerator enumerator = transformGroup.GetEnumerator();
             while (enumerator.MoveNext())
@@ -85,7 +85,7 @@ namespace Lemon.UI
             ClassText = ClassText.Replace(KEY_VARIABLE, KEY_VARIABLE + stringBuilder.ToString());
 
             //添加自动化的变量路径
-            stringBuilder = StringPool.GetStringBuilder();
+            stringBuilder = StringUtility.GetStringBuilder();
             stringBuilder.Append("\n");
             enumerator = transformGroup.GetEnumerator();
             while (enumerator.MoveNext())

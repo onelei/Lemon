@@ -5,7 +5,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
     [CustomEditor(typeof(QImage), true)]
     public class QImageEditor : UnityEditor.UI.ImageEditor

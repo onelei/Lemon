@@ -4,13 +4,13 @@ using Lemon.SkillSystem;
 
 namespace Lemon
 {
-    public sealed class MainManager : BaseUIBehavior
+    public sealed class MainManager : UIBaseBehavior
     {
         public static float deltaTime;
 
         protected override void MonoStart()
         {
-            UIManager.Instance.Initial();
+            UIMgr.Instance.Initial();
             LanguageManager.Instance.Initial();
             SkillSystemManager.Instance.Initial();
         }

@@ -1,9 +1,9 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
-    public class UISkillMain: BaseUIBehavior
+    public class UISkillMain: UIBaseBehavior
     {
         public Button Button_Go;
         public Dropdown dropdown;

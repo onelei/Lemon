@@ -13,13 +13,14 @@ dbg.tcpListen('localhost', 9966)
 LuaInit = {}
 
 require("Function")
-require("Common.LuaDef")
-require("Common.TimeMgr")
 require("Common.LuaUtil")
 require("Common.Debug")
+require("Common.LuaDef")
 require("Common.EventMgr")
+
+
+require("Common.TimeMgr")
 require("Common.LuaBehavior")
 require("Common.StepAction.StepUtility")
-
 
 return LuaInit

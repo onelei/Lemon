@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace Lemon.UI
+namespace Lemon
 {
     public enum EUIDepth
     {
@@ -16,13 +16,17 @@ namespace Lemon.UI
         /// </summary>
         Default = 1000,
         /// <summary>
+        /// 弹出窗口
+        /// </summary>
+        Window  = 10000,
+        /// <summary>
         /// 网络界面
         /// </summary>
-        Network = 10000,
+        Network = 20000,
         /// <summary>
         /// 公共弹出消息界面
         /// </summary>
-        Message = 20000,
+        Message = 30000,
         /// <summary>
         /// 最上层提示界面
         /// </summary>
@@ -55,7 +59,7 @@ namespace Lemon.UI
         }
     }
 
-    public sealed partial class UIManager : Singleton<UIManager>
+    public sealed partial class UIMgr : Singleton<UIMgr>
     {
         public UGUIGroup UGUI;
 
@@ -82,29 +86,29 @@ namespace Lemon.UI
             UIBase uIBase;
             if (TryGetUIBase(eUI, out uIBase))
             {
-                QLog.LogWarning(StringPool.Concat("Already open UI, witch EUI is ", eUI.ToString()));
+                QLog.LogWarning(StringUtility.Concat("Already open UI, witch EUI is ", eUI.ToString()));
                 return;
             }
 
-            UIBase prefabDatabase = UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>(StringPool.Concat(PATH_PREFAB_UI, eUI.ToString(), ".prefab"));
+            UIBase prefabDatabase = UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>(StringUtility.Concat(PATH_PREFAB_UI, eUI.ToString(), ".prefab"));
             if (prefabDatabase == null)
             {
-                QLog.LogError(StringPool.Concat("Can not find UIBase Script in EUI = ", eUI.ToString()));
+                QLog.LogError(StringUtility.Concat("Can not find UIBase Script in EUI = ", eUI.ToString()));
                 return;
             }
 
             uIBase = Object.Instantiate<UIBase>(prefabDatabase, UGUI.UGUICanvas.transform, false);
             if (uIBase == null)
             {
-                QLog.LogError(StringPool.Concat("Instantiate fail, EUI = ", eUI.ToString()));
+                QLog.LogError(StringUtility.Concat("Instantiate fail, EUI = ", eUI.ToString()));
                 return;
             }
 
             //设置数据，判断是否进入
             uIBase.SetData(objs);
-            if (!uIBase.IsCanEnter())
+            if (!uIBase.IsCanOpen())
             {
-                QLog.Log(StringPool.Concat("The UIBase script can not enter, EUI = ", eUI.ToString()));
+                QLog.Log(StringUtility.Concat("The UIBase script can not enter, EUI = ", eUI.ToString()));
                 return;
             }
 
@@ -112,7 +116,7 @@ namespace Lemon.UI
             UIBase lastUIBase;
             if (TryGetLastUIBase(out lastUIBase))
             {
-                QLog.LogEditor(StringPool.Format("{0} 执行暂停函数", lastUIBase.eUI.ToString()));
+                QLog.LogEditor(StringUtility.Format("{0} 执行暂停函数", lastUIBase.eUI.ToString()));
                 lastUIBase.OnPause();
             }
 
@@ -132,12 +136,12 @@ namespace Lemon.UI
             }
             
             uIBase.SetDepth(eUI,eUIDepth, tmpDepth);
-            QLog.LogEditor(StringPool.Format("{0} depth is {1}", uIBase.eUI.ToString(), tmpDepth.ToString()));
+            QLog.LogEditor(StringUtility.Format("{0} depth is {1}", uIBase.eUI.ToString(), tmpDepth.ToString()));
 
 
             //新界面，执行OnEnter函数
-            QLog.LogEditor(StringPool.Format("{0} 执行OnEnter函数", uIBase.eUI.ToString()));
-            uIBase.OnEnter();
+            QLog.LogEditor(StringUtility.Format("{0} 执行OnEnter函数", uIBase.eUI.ToString()));
+            uIBase.OnOpen();
             UIBasePool.Add(uIBase);
         }
 
@@ -150,8 +154,8 @@ namespace Lemon.UI
             }
 
             //取出界面，执行OnExit函数
-            QLog.LogEditor(StringPool.Format("{0} 执行OnExit函数", uIBase.eUI.ToString()));
-            uIBase.OnExit();
+            QLog.LogEditor(StringUtility.Format("{0} 执行OnExit函数", uIBase.eUI.ToString()));
+            uIBase.OnClose();
             UIBasePool.Remove(uIBase);
 
             GameObject.Destroy(uIBase.CacheGameObject);
@@ -161,7 +165,7 @@ namespace Lemon.UI
             UIBase lastUIBase;
             if (TryGetLastUIBase(out lastUIBase))
             {
-                QLog.LogEditor(StringPool.Format("{0} 执行OnResume函数", lastUIBase.eUI.ToString()));
+                QLog.LogEditor(StringUtility.Format("{0} 执行OnResume函数", lastUIBase.eUI.ToString()));
                 lastUIBase.OnResume();
             }
         }
@@ -172,7 +176,7 @@ namespace Lemon.UI
             if (TryGetLastUIBase(out lastUIBase))
             {
                 EUI eUI = lastUIBase.eUI;
-                QLog.LogEditor(StringPool.Format("统一关闭 {0} .", eUI.ToString()));
+                QLog.LogEditor(StringUtility.Format("统一关闭 {0} .", eUI.ToString()));
                 Close(eUI);
             }
         }

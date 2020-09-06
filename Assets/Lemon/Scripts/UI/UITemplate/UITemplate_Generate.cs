@@ -5,7 +5,7 @@
 using Lemon.UI;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
     public sealed partial class UITemplate : UIBase
     {

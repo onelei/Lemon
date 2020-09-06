@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e639caa-62e5-4702-b899-1021c8c03023" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/Editor.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/Editor/VariableBehaviorEditor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/Editor/VariableBehaviorEditor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/VariableBehavior.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/VariableBehavior.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/UIBaseEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/UIBaseEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Entry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/Entry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/EventMgr.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/EventMgr.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/LuaBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/LuaBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/LuaMgr.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/LuaMgr.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/MainManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/MainManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/SkillSystem/SkillUnit/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/SkillSystem/SkillUnit/Unit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/SkillSystem/UI/UISkillMain/UISkillMain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/SkillSystem/UI/UISkillMain/UISkillMain.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/LanguageManager/LanguageManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/LanguageManager/LanguageManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UGUIGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UGUIGroup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UGUIGroup.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UGUIGroup.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIBase.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIBase.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIBase_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIBase_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIBase_Generate.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIBase_Generate.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIMgr.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIMgr.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager_Enum_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIManager_Enum_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager_Enum_Generate.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/UIManager_Enum_Generate.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISample/UISample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISample/UISample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISample/UISample_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISample/UISample_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleThree/UISampleThree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleThree/UISampleThree.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleThree/UISampleThree_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleThree/UISampleThree_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleTwo/UISampleTwo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleTwo/UISampleTwo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleTwo/UISampleTwo_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UISampleTwo/UISampleTwo_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UITemplate/UITemplate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UITemplate/UITemplate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UITemplate/UITemplate_Generate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UITemplate/UITemplate_Generate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/DontDestroyOnLoad.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/DontDestroyOnLoad.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/ListPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/ListPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/ObjectPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/ObjectPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/StringPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Pool/StringPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/BaseBehavior.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/BaseBehavior.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/BaseUIBehavior.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/BaseUIBehavior.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/Singleton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/Template/Singleton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/ThreadString.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/ThreadString.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/UtilityEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Lemon/Scripts/Utility/UtilityEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LuaProject/Common/LuaBehavior.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaProject/Common/LuaBehavior.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LuaProject/Common/TimeMgr.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaProject/Common/TimeMgr.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/LuaProject/LuaInit.lua" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/LuaProject/LuaInit.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QButtonEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QButtonEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QImageEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QImageEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QRawImageEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QRawImageEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QTextEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QTextEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QToggleButtonEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QToggleButtonEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/Editor/QToggleButtonGroupEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/Editor/QToggleButtonGroupEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QImage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QRawImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QRawImage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QText.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QToggleButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/QGUI/QToggleButtonGroup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/QGUI/QToggleButtonGroup.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DC77FB4B-D58F-4B46-BB53-100880CF59E0/45/62db0d12/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Soft/UnityVersion/2019.4.6f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Soft/UnityVersion/2019.4.6f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/UIBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DC77FB4B-D58F-4B46-BB53-100880CF59E0/6b/810c1457/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Soft/UnityVersion/2019.4.6f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/Graphic.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Soft/UnityVersion/2019.4.6f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/UI/Core/MaskableGraphic.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/DC77FB4B-D58F-4B46-BB53-100880CF59E0/f0/e2c24af7/Component.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/GameStage/GameStageBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/GameStage/GameStageMgr.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager_Enum_Generate.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIMgr.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/LanguageManager/LanguageManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UI/UIManager/UIBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/VariableBehavior.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lemon/Scripts/UIMgr/Editor/VariableBehaviorEditor.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1h59afTdUVrurDj82iTgQQrnjcn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e639caa-62e5-4702-b899-1021c8c03023" name="Default Changelist" comment="" />
+      <created>1599290153817</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599290153817</updated>
+      <workItem from="1599290157093" duration="499000" />
+      <workItem from="1599291220309" duration="27000" />
+      <workItem from="1599291365263" duration="27000" />
+      <workItem from="1599291543329" duration="8806000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="840" y="360" key="SettingsEditor" timestamp="1599291389218">
+      <screen x="0" y="0" width="2560" height="1359" />
+    </state>
+    <state x="840" y="360" key="SettingsEditor/0.0.2560.1359@0.0.2560.1359" timestamp="1599291389218" />
+    <state x="929" y="277" width="701" height="804" key="find.popup" timestamp="1599307695329">
+      <screen x="0" y="0" width="2560" height="1359" />
+    </state>
+    <state x="929" y="277" width="701" height="804" key="find.popup/0.0.2560.1359@0.0.2560.1359" timestamp="1599307695329" />
+  </component>
+</project>

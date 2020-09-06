@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lemon.UI
+namespace Lemon
 {
     public class DontDestroyOnLoad : BaseBehavior
     {
