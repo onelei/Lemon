@@ -1,7 +1,6 @@
-/Library
-/Temp
-/.vs
-/obj
-/Assembly-CSharp.csproj
-/Assembly-CSharp-Editor.csproj
-/*.csproj
+Library
+Temp
+.vs
+obj
+*.csproj
+*.idea
