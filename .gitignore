@@ -2,5 +2,6 @@ Library
 Temp
 .vs
 obj
+Logs
 *.csproj
 *.idea
