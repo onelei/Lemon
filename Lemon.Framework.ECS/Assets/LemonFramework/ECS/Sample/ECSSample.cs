@@ -1,6 +1,7 @@
 ﻿using Lemon.Framework.ECS.Components;
 using Lemon.Framework.ECS.Entitys;
 using Lemon.Framework.ECS.Systems;
+using LemonFramework;
 using UnityEngine;
 
 namespace Lemon.Framework.ECS.Sample
@@ -18,6 +19,8 @@ namespace Lemon.Framework.ECS.Sample
             world.AddComponent(enemy, healthComponent);
             var combatSystem = new CombatSystem(world);
             combatSystem.PerformAttack(player, enemy);
+            
+            RandomUtility.UnitTest();
         }
     }
 }
