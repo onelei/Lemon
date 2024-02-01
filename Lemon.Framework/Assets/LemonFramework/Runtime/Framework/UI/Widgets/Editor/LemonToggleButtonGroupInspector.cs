@@ -14,7 +14,7 @@ namespace Lemon.Framework.UI.Widgets
         [MenuItem("GameObject/UI/LemonToggleButtonGroup", false, UtilityEditor.Priority_LemonToggleButtonGroup)]
         public static LemonToggleButtonGroup AddComponent()
         {
-            LemonToggleButtonGroup component = UtilityEditor.ExtensionComponentWhenCreate<LemonToggleButtonGroup>(typeof(LemonToggleButtonGroup).Name.ToString());
+            LemonToggleButtonGroup component = UtilityEditor.ExtensionComponentWhenCreate<LemonToggleButtonGroup>(nameof(LemonToggleButtonGroup));
             component.list.Clear();
 
             for (int i = 0; i < 2; i++)

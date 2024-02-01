@@ -2,6 +2,8 @@
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
+
+using Lemon.Framework.Extension;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine;
@@ -18,8 +20,8 @@ namespace Lemon.Framework.UI.Widgets
             LemonImageBox image = LemonImageBoxEditor.AddComponent();
             image.raycastTarget = true;
 
-            LemonToggleButton component = Utility.GetOrAddCompoment<LemonToggleButton>(image.CacheGameObject);
-            component.name = typeof(LemonToggleButton).Name.ToString();
+            LemonToggleButton component = image.CacheGameObject.GetOrAddComponent<LemonToggleButton>();
+            component.name = nameof(LemonToggleButton);
             //设置默认值
             SetDefaultValue(component);
             return component;

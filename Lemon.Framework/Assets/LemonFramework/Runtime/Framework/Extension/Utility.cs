@@ -28,16 +28,7 @@ namespace Lemon.Framework
             return false;
         }
 
-        public static T GetOrAddCompoment<T>(this GameObject gameObject) where T : Component
-        {
-            T component = gameObject.GetComponent<T>();
-            if (component == null)
-            {
-                component = gameObject.AddComponent<T>();
-            }
-            return component;
-        }
-
+      
         public static void AddListenerOnce(this Button.ButtonClickedEvent unityEvent, UnityEngine.Events.UnityAction unityAction)
         {
             unityEvent.RemoveListener(unityAction);

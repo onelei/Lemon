@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lemon.Framework
 {
-    public static partial class Utility
+    public static class ActionExtension
     {
         public static void InvokeSafely(this Action callBack)
         {

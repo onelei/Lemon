@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Lemon.Framework.Extension;
 using Lemon.Framework.UI.Widgets;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Lemon.Framework
                 if (_instance == null)
                 {
                     GameObject go = new GameObject(typeof(ClockUtility).ToString());
-                    _instance = go.GetOrAddCompoment<ClockUtility>();
+                    _instance = go.GetOrAddComponent<ClockUtility>();
                     DontDestroyOnLoad(go);
                 }
                 return _instance;

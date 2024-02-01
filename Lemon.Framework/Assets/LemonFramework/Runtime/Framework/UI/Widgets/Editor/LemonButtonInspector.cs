@@ -2,6 +2,8 @@
 *   Author：onelei
 *   Copyright © 2019 - 2020 ONELEI. All Rights Reserved
 */
+
+using Lemon.Framework.Extension;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +17,8 @@ namespace Lemon.Framework.UI.Widgets
         [MenuItem("GameObject/UI/QButton", false, UtilityEditor.Priority_QButton)]
         public static LemonButton AddComponent()
         {
-            LemonImageBox image = UtilityEditor.ExtensionComponentWhenCreate<LemonImageBox>(typeof(LemonButton).Name.ToString());
-            LemonButton component = Utility.GetOrAddCompoment<LemonButton>(image.gameObject);
+            LemonImageBox image = UtilityEditor.ExtensionComponentWhenCreate<LemonImageBox>(nameof(LemonButton));
+            LemonButton component = image.gameObject.GetOrAddComponent<LemonButton>();
             //设置默认值
             SetDefaultValue(component);
             return component;

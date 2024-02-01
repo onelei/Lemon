@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using Lemon.Framework.Extension;
 using Lemon.Framework.UI.Widgets;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace Lemon.Framework
                 if (_instance == null)
                 {
                     GameObject go = new GameObject(typeof(CoroutineUtility).ToString());
-                    _instance = go.GetOrAddCompoment<CoroutineUtility>();
+                    _instance = go.GetOrAddComponent<CoroutineUtility>();
                     DontDestroyOnLoad(go);
                 }
                 return _instance;

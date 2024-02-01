@@ -13,7 +13,7 @@ namespace Lemon.Framework.UI.Widgets
         [MenuItem("GameObject/UI/LemonImage", false, UtilityEditor.Priority_LemonImage)]
         public static LemonImage AddComponent()
         {
-            LemonImage component = UtilityEditor.ExtensionComponentWhenCreate<LemonImage>(typeof(LemonImage).Name.ToString());
+            LemonImage component = UtilityEditor.ExtensionComponentWhenCreate<LemonImage>(nameof(LemonImage));
             //设置默认值
             SetDefaultValue(component);
             return component;

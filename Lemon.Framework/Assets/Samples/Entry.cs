@@ -11,7 +11,7 @@ namespace Lemon.Framework
     {
         private void Awake()
         {
-            CacheGameObject.GetOrAddCompoment<DontDestroyOnLoad>(); 
+            DontDestroyOnLoad(CacheGameObject);
         }
          
         // Update is called once per frame

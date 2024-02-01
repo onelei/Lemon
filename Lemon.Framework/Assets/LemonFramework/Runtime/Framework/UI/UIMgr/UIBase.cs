@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Lemon.Framework.Extension;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace Lemon.Framework
             {
                 if (_CacheCanvas == null)
                 {
-                    _CacheCanvas = Utility.GetOrAddCompoment<Canvas>(CacheGameObject);
+                    _CacheCanvas = CacheGameObject.GetOrAddComponent<Canvas>();
                 }
                 return _CacheCanvas;
             }
@@ -35,7 +36,7 @@ namespace Lemon.Framework
             {
                 if (_CacheGraphicRaycaster == null)
                 {
-                    _CacheGraphicRaycaster = Utility.GetOrAddCompoment<GraphicRaycaster>(CacheGameObject);
+                    _CacheGraphicRaycaster = CacheGameObject.GetOrAddComponent<GraphicRaycaster>();
                 }
                 return _CacheGraphicRaycaster;
             }

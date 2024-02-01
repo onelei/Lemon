@@ -14,7 +14,7 @@ namespace Lemon.Framework.UI.Widgets
         [MenuItem("GameObject/UI/LemonText", false, UtilityEditor.Priority_LemonText)]
         public static LemonText AddComponent()
         {
-            LemonText component = UtilityEditor.ExtensionComponentWhenCreate<LemonText>(typeof(LemonText).Name.ToString());
+            LemonText component = UtilityEditor.ExtensionComponentWhenCreate<LemonText>(nameof(LemonText));
             //设置默认值
             SetDefaultValue(component);
             return component;
