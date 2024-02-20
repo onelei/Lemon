@@ -24,7 +24,6 @@ namespace Lemon.Framework.Log
 
             try
             {
-                StreamWriter?.Dispose();
                 if (File.Exists(FilePath))
                 {
                     File.Delete(FilePath);

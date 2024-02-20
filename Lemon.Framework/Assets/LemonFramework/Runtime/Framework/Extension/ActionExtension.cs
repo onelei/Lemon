@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
 
-namespace Lemon.Framework
+namespace Lemon.Framework.Extension
 {
     public static class ActionExtension
     {

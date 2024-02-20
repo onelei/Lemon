@@ -7,11 +7,11 @@ namespace Lemon.Framework.Log
     public static class LogManager
     {
         private static readonly ILogger Logger;
-        private static Dictionary<string, ILogger> loggers = new Dictionary<string, ILogger>();
+        private static readonly Dictionary<string, ILogger> Loggers = new Dictionary<string, ILogger>();
 
         static LogManager()
         {
-            Logger = new DefaultLogger(null, new FileAppender());
+            Logger = new DefaultLogger();
         }
 
         public static ILogger GetLogger()
@@ -36,13 +36,13 @@ namespace Lemon.Framework.Log
                 return Logger;
             }
 
-            if (loggers.TryGetValue(typeName, out ILogger logger))
+            if (Loggers.TryGetValue(typeName, out ILogger logger))
             {
                 return logger;
             }
 
             logger = new DefaultLogger(typeName, appender);
-            loggers.Add(typeName, logger);
+            Loggers.Add(typeName, logger);
             return logger;
         }
 
@@ -60,7 +60,7 @@ namespace Lemon.Framework.Log
         {
             GetLogger().Log(msg);
         }
-
+        
         [Conditional("UNITY_EDITOR")]
         public static void LogEditor(string msg)
         {

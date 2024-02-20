@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Lemon.Framework/Scenes/SkillSystemEditor.unity
+    path: Assets/Samples/Scenes/SkillSystemEditor.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Lemon.Framework/Scenes/Entry.unity
+    path: Assets/Samples/Scenes/Entry.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
