@@ -11,7 +11,7 @@ CUR_PATH = os.getcwd()
 PROJ_PATH = os.path.join(CUR_PATH, "../")
 MSBUILD_EXE = '\"C:/Program Files/JetBrains/JetBrains Rider 2022.2.4/tools/MSBuild/Current/Bin/MSBuild.exe\"'
 SLN_PATH = '\"E:/Projects/Lemon/Lemon.Framework.Jenkins/Lemon.Framework.Jenkins.sln\"'
-BRANCH = 'gl-master'
+BRANCH = 'master'
 
 isSuc = True
 compile_output_list = []
@@ -36,7 +36,7 @@ def git_reset_pull():
 
 # 调用unity中我们封装的静态函数
 def ms_build():
-    cmd = '%s %s /t:Build /p:Configuration=Debug /p:Platform="Any CPU"'%(MSBUILD_EXE,SLN_PATH)
+    cmd = '%s %s /t:Rebuild /clp:ErrorsOnly'%(MSBUILD_EXE,SLN_PATH)
     print('run cmd:  ' + cmd)
     #os.system(cmd)
     # 运行命令并捕获输出
@@ -50,7 +50,8 @@ def ms_build():
     global isSuc
     if process.returncode != 0:
         isSuc = False
-        print("[Command] Scripts have compiler errors:", process.returncode)        
+        print("[Command] Scripts have compiler errors:", process.returncode)  
+        print(process.stdout)      
     else:
         isSuc = True
         print("[Command] CSharp Compiler successfully")
