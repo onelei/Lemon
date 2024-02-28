@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Lemon.Framework
+﻿namespace Lemon.Framework
 {
     public class Singleton<T> where T : class, new()
     {

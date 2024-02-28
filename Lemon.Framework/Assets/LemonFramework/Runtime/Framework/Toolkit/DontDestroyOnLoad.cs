@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Lemon.Framework.UI.Widgets;
-using UnityEngine;
+﻿using Lemon.Framework.UI.Widgets;
 
 namespace Lemon.Framework
 {

@@ -4,7 +4,7 @@ using Lemon.Framework.Extension;
 using Lemon.Framework.UI.Widgets;
 using UnityEngine;
 
-namespace Lemon.Framework
+namespace Lemon.Framework.Utility
 {
     public class ClockUtility : BaseBehavior
     {
