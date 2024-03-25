@@ -7,18 +7,17 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 {
     public class LemonSortOrderGroup : BaseBehavior
     {
-        [Header("Start Sort Order")] 
-        public int sortOrder = 0;
-        
+        [Header("Start Sort Order")] public int sortOrder = 0;
+
         /// <summary>
         /// 会被自动修改的最大排序值
         /// </summary>
-        [ReadOnly] [Header("[ReadOnly] Max Sort Order")] 
+        [ReadOnly] [Header("[ReadOnly] Max Sort Order")]
         public int maxSortOrder = 0;
 
         //序列化GameObjects
         public List<GameObject> items = new List<GameObject>();
-        
+
         readonly int k_SortOrderOffset = 10;
 
         [Serializable]
@@ -100,7 +99,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
             maxSortOrder = order;
             foreach (var item in items)
             {
-                if(item == null)
+                if (item == null)
                     continue;
                 if (!cacheComponents.TryGetValue(item, out var component))
                 {
@@ -118,7 +117,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
         {
             SetOrder(sortOrder);
         }
-        
+
         public void AddItem(GameObject item)
         {
             if (items.Contains(item))
@@ -134,7 +133,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
             items.Insert(index, item);
             SetOrder(sortOrder);
         }
-        
+
         public void RemoveItem(GameObject item)
         {
             if (!items.Contains(item))

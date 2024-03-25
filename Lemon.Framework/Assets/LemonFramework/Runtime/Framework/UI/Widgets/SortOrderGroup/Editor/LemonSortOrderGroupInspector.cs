@@ -8,6 +8,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
     public class LemonSortOrderGroupInspector : UnityEditor.Editor
     {
         private LemonSortOrderGroup _component;
+
         protected void OnEnable()
         {
             _component = (LemonSortOrderGroup)target;
@@ -19,7 +20,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
             {
                 _component.RefreshEditor();
             }
-            
+
             base.OnInspectorGUI();
 
             if (GUI.changed)
