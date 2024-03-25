@@ -96,6 +96,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 
         public int SetOrder(int order)
         {
+            sortOrder = order;
             maxSortOrder = order;
             foreach (var item in items)
             {
