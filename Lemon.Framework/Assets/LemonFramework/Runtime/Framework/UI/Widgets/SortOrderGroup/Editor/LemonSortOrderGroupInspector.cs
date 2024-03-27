@@ -8,14 +8,48 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
     public class LemonSortOrderGroupInspector : UnityEditor.Editor
     {
         private LemonSortOrderGroup _component;
+        private SerializedProperty _sortOrderProperty;
+        private bool _isDisableSortOrder = true;
 
         protected void OnEnable()
         {
             _component = (LemonSortOrderGroup)target;
+            _sortOrderProperty = serializedObject.FindProperty("sortOrder");
         }
 
         public override void OnInspectorGUI()
         {
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Sort Order", GUILayout.Width(100));
+                EditorGUI.BeginDisabledGroup(_isDisableSortOrder);
+                {
+                    EditorGUI.BeginChangeCheck();
+                    EditorGUILayout.PropertyField(_sortOrderProperty, GUIContent.none);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        _component.SetOrder(_sortOrderProperty.intValue);
+                    }
+                }
+                EditorGUI.EndDisabledGroup();
+                if (GUILayout.Button("Modify"))
+                {
+                    _isDisableSortOrder = !_isDisableSortOrder;
+                }
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Max Sort Order", GUILayout.Width(100));
+                EditorGUI.BeginDisabledGroup(true);
+                {
+                    _component.maxSortOrder = EditorGUILayout.IntField(_component.maxSortOrder);
+                }
+                EditorGUI.EndDisabledGroup();
+            }
+            GUILayout.EndHorizontal();
+
             if (GUILayout.Button("Refresh"))
             {
                 _component.RefreshEditor();
@@ -23,9 +57,10 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 
             base.OnInspectorGUI();
 
+            serializedObject.ApplyModifiedProperties();
             if (GUI.changed)
             {
-                serializedObject.ApplyModifiedProperties();
+                EditorUtility.SetDirty(_component);
             }
         }
     }

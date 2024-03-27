@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Lemon.Framework.CustomAttribute;
 using UnityEngine;
 
 namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 {
     public class LemonSortOrderGroup : BaseBehavior
     {
-        [Header("Start Sort Order")] public int sortOrder = 0;
+        //[Header("Start Sort Order")] 
+        [SerializeField] [HideInInspector] private int sortOrder = 0;
 
         /// <summary>
         /// 会被自动修改的最大排序值
         /// </summary>
-        [ReadOnly] [Header("[ReadOnly] Max Sort Order")]
-        public int maxSortOrder = 0;
+        [NonSerialized] public int maxSortOrder = 0;
 
         //序列化GameObjects
         public List<GameObject> items = new List<GameObject>();
@@ -23,7 +22,6 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
         [Serializable]
         public class SortOrderComponent
         {
-            public int sortOrder;
             public GameObject gameObject;
             public List<LemonSortOrderGroup> sortOrderGroupList = new List<LemonSortOrderGroup>();
             public List<MeshRenderer> meshRendererList = new List<MeshRenderer>();
@@ -33,18 +31,9 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 
             public int SetOrder(int sortOrder)
             {
-                this.sortOrder = sortOrder;
                 maxSortOrder = sortOrder;
                 if (gameObject == null)
                     return maxSortOrder;
-
-                if (sortOrderGroupList != null)
-                {
-                    foreach (var sortOrderGroup in sortOrderGroupList)
-                    {
-                        maxSortOrder = sortOrderGroup.SetOrder(maxSortOrder + sortOrderGroup.k_SortOrderOffset);
-                    }
-                }
 
                 if (meshRendererList != null)
                 {
@@ -67,6 +56,14 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
                     foreach (var component in particleSystemRendererList)
                     {
                         component.sortingOrder = ++maxSortOrder;
+                    }
+                }
+
+                if (sortOrderGroupList != null)
+                {
+                    foreach (var sortOrderGroup in sortOrderGroupList)
+                    {
+                        maxSortOrder = sortOrderGroup.SetOrder(maxSortOrder + sortOrderGroup.k_SortOrderOffset);
                     }
                 }
 
