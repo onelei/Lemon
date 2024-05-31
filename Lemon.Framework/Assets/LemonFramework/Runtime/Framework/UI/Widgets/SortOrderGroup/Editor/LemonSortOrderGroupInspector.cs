@@ -44,7 +44,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
                 GUILayout.Label("Max Sort Order", GUILayout.Width(100));
                 EditorGUI.BeginDisabledGroup(true);
                 {
-                    _component.maxSortOrder = EditorGUILayout.IntField(_component.maxSortOrder);
+                    _component.MaxSortOrder = EditorGUILayout.IntField(_component.MaxSortOrder);
                 }
                 EditorGUI.EndDisabledGroup();
             }
@@ -52,7 +52,7 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
 
             if (GUILayout.Button("Refresh"))
             {
-                _component.RefreshEditor();
+                _component.Refresh(true);
             }
 
             base.OnInspectorGUI();

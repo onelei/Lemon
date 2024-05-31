@@ -12,107 +12,200 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
         /// <summary>
         /// 会被自动修改的最大排序值
         /// </summary>
-        [NonSerialized] public int maxSortOrder = 0;
+        [NonSerialized] public int MaxSortOrder = 0;
 
         //序列化GameObjects
         public List<GameObject> items = new List<GameObject>();
 
-        readonly int k_SortOrderOffset = 10;
+        readonly int _kSortOrderOffset = 1;
 
         [Serializable]
-        public class SortOrderComponent
+        internal class SortOrderItem
         {
+            [Serializable]
+            internal class Component
+            {
+                public MeshRenderer meshRenderer;
+                public Canvas canvas;
+                public ParticleSystemRenderer particleSystemRenderer;
+
+                public Component(MeshRenderer meshRenderer)
+                {
+                    this.meshRenderer = meshRenderer;
+                }
+
+                public Component(Canvas canvas)
+                {
+                    this.canvas = canvas;
+                }
+
+                public Component(ParticleSystemRenderer particleSystemRenderer)
+                {
+                    this.particleSystemRenderer = particleSystemRenderer;
+                }
+
+                public void SetOrder(int order)
+                {
+                    if (meshRenderer != null)
+                    {
+                        meshRenderer.sortingOrder = order;
+                    }
+
+                    if (canvas != null)
+                    {
+                        canvas.sortingOrder = order;
+                    }
+
+                    if (particleSystemRenderer != null)
+                    {
+                        particleSystemRenderer.sortingOrder = order;
+                    }
+                }
+
+                public int GetOrder()
+                {
+                    if (meshRenderer != null)
+                    {
+                        return meshRenderer.sortingOrder;
+                    }
+
+                    if (canvas != null)
+                    {
+                        return canvas.sortingOrder;
+                    }
+
+                    if (particleSystemRenderer != null)
+                    {
+                        return particleSystemRenderer.sortingOrder;
+                    }
+
+                    return 0;
+                }
+            }
+
             public GameObject gameObject;
-            public List<LemonSortOrderGroup> sortOrderGroupList = new List<LemonSortOrderGroup>();
-            public List<MeshRenderer> meshRendererList = new List<MeshRenderer>();
-            public List<Canvas> canvasList = new List<Canvas>();
-            public List<ParticleSystemRenderer> particleSystemRendererList = new List<ParticleSystemRenderer>();
-            [NonSerialized] public int maxSortOrder = 0;
+            public List<Component> components = new List<Component>();
+            public List<LemonSortOrderGroup> sortOrderGroups = new List<LemonSortOrderGroup>();
+
+            [NonSerialized] public int MaxSortOrder = 0;
+            private SortedDictionary<int, List<Component>> _sortOrderDic = new SortedDictionary<int, List<Component>>();
 
             public int SetOrder(int sortOrder)
             {
-                maxSortOrder = sortOrder;
+                MaxSortOrder = sortOrder;
                 if (gameObject == null)
-                    return maxSortOrder;
+                    return MaxSortOrder;
 
-                if (meshRendererList != null)
+                foreach (var component in components)
                 {
-                    foreach (var component in meshRendererList)
+                    if (!_sortOrderDic.TryGetValue(component.GetOrder(), out var results))
                     {
-                        component.sortingOrder = ++maxSortOrder;
+                        results = new List<Component>();
+                    }
+
+                    results.Add(component);
+                    _sortOrderDic[component.GetOrder()] = results;
+                }
+
+                foreach (var pair in _sortOrderDic)
+                {
+                    ++MaxSortOrder;
+                    foreach (var component in pair.Value)
+                    {
+                        component.SetOrder(MaxSortOrder);
                     }
                 }
 
-                if (canvasList != null)
+                foreach (var sortOrderGroup in sortOrderGroups)
                 {
-                    foreach (var component in canvasList)
-                    {
-                        component.sortingOrder = ++maxSortOrder;
-                    }
+                    MaxSortOrder = sortOrderGroup.SetOrder(MaxSortOrder + sortOrderGroup._kSortOrderOffset);
                 }
 
-                if (particleSystemRendererList != null)
-                {
-                    foreach (var component in particleSystemRendererList)
-                    {
-                        component.sortingOrder = ++maxSortOrder;
-                    }
-                }
-
-                if (sortOrderGroupList != null)
-                {
-                    foreach (var sortOrderGroup in sortOrderGroupList)
-                    {
-                        maxSortOrder = sortOrderGroup.SetOrder(maxSortOrder + sortOrderGroup.k_SortOrderOffset);
-                    }
-                }
-
-                return maxSortOrder;
+                return MaxSortOrder;
             }
 
-            public void Cache(GameObject gameObject)
+            public void Cache(GameObject obj)
             {
-                if (gameObject == null)
+                if (obj == null)
                 {
 #if !UNITY_EDITOR
-                    Debug.LogError("[SortOrderComponent]: gameObject is null");
+                    Debug.LogError("[SortOrderComponent]: obj is null");
 #endif
                     return;
                 }
 
-                this.gameObject = gameObject;
-                this.gameObject.GetComponentsInChildren(sortOrderGroupList);
-                this.gameObject.GetComponentsInChildren(meshRendererList);
-                this.gameObject.GetComponentsInChildren(canvasList);
-                this.gameObject.GetComponentsInChildren(particleSystemRendererList);
+                this.gameObject = obj;
+                components.Clear();
+                //获取所有的MeshRenderer
+                var meshRenderers = ListPool<MeshRenderer>.Get();
+                this.gameObject.GetComponentsInChildren(meshRenderers);
+                foreach (var meshRenderer in meshRenderers)
+                {
+                    components.Add(new Component(meshRenderer));
+                }
+
+                ListPool<MeshRenderer>.Release(meshRenderers);
+                //获取所有的Canvas
+                var canvas = ListPool<Canvas>.Get();
+                this.gameObject.GetComponentsInChildren(canvas);
+                foreach (var canva in canvas)
+                {
+                    components.Add(new Component(canva));
+                }
+
+                ListPool<Canvas>.Release(canvas);
+                //获取所有的ParticleSystemRenderer
+                var particleSystemRenderers = ListPool<ParticleSystemRenderer>.Get();
+                this.gameObject.GetComponentsInChildren(particleSystemRenderers);
+                foreach (var particleSystemRenderer in particleSystemRenderers)
+                {
+                    components.Add(new Component(particleSystemRenderer));
+                }
+
+                ListPool<ParticleSystemRenderer>.Release(particleSystemRenderers);
+                //获取所有的SortOrderComponent
+                this.gameObject.GetComponentsInChildren(sortOrderGroups);
+#if UNITY_EDITOR
+                if (components.Count == 0 && sortOrderGroups.Count == 0)
+                {
+                    Debug.LogError(
+                        $"[SortOrderComponent]: There are no Canvas or SortOrderGroup Component in the [{gameObject.name}] GameObject");
+                }
+#endif
             }
         }
 
-        private Dictionary<GameObject, SortOrderComponent> cacheComponents =
-            new Dictionary<GameObject, SortOrderComponent>();
+        private readonly Dictionary<GameObject, SortOrderItem> _cacheComponents =
+            new Dictionary<GameObject, SortOrderItem>();
 
         public int SetOrder(int order)
         {
             sortOrder = order;
-            maxSortOrder = order;
+            MaxSortOrder = order;
             foreach (var item in items)
             {
                 if (item == null)
                     continue;
-                if (!cacheComponents.TryGetValue(item, out var component))
+                if (!_cacheComponents.TryGetValue(item, out var component))
                 {
-                    component = new SortOrderComponent();
+                    component = new SortOrderItem();
                     component.Cache(item);
                 }
 
-                maxSortOrder = component.SetOrder(maxSortOrder);
+                _cacheComponents[item] = component;
+                MaxSortOrder = component.SetOrder(MaxSortOrder);
             }
 
-            return maxSortOrder;
+            return MaxSortOrder;
         }
 
-        public void Refresh()
+        public void Refresh(bool force = false)
         {
+            if (force)
+            {
+                _cacheComponents.Clear();
+            }
+
             SetOrder(sortOrder);
         }
 
@@ -140,16 +233,16 @@ namespace Lemon.Framework.UI.Widgets.SortOrderGroup
             SetOrder(sortOrder);
         }
 
-#if UNITY_EDITOR
-        public void RefreshEditor()
+        private void OnDestroy()
         {
-            cacheComponents.Clear();
-            SetOrder(sortOrder);
+            _cacheComponents.Clear();
         }
+
+#if UNITY_EDITOR
 
         private void OnValidate()
         {
-            RefreshEditor();
+            Refresh(true);
         }
 #endif
     }
