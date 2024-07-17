@@ -52,7 +52,10 @@ namespace Lemon.Framework
 
         public void Init()
         {
-            var asset = UnityEditor.AssetDatabase.LoadAssetAtPath<UGUIGroup>("Assets/Lemon.Framework/Prefabs/UGUI.prefab");
+            var asset = Resources.Load<UGUIGroup>("UGUI");
+#if UNITY_EDITOR
+            asset = UnityEditor.AssetDatabase.LoadAssetAtPath<UGUIGroup>("Assets/Lemon.Framework/Prefabs/UGUI.prefab");
+#endif
             UGUI = GameObject.Instantiate<UGUIGroup>(asset);
 
             if (UGUI == null)
@@ -72,7 +75,12 @@ namespace Lemon.Framework
                 return;
             }
 
-            UIBase prefabDatabase = UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>(StringUtility.Concat(PATH_PREFAB_UI, UIName.ToString(), ".prefab"));
+            UIBase prefabDatabase = null;
+#if UNITY_EDITOR
+            prefabDatabase =
+                UnityEditor.AssetDatabase.LoadAssetAtPath<UIBase>(StringUtility.Concat(PATH_PREFAB_UI,
+                    UIName.ToString(), ".prefab"));
+#endif
             if (prefabDatabase == null)
             {
                 LogManager.LogError(StringUtility.Concat("Can not find UIBase Script in UIName = ", UIName.ToString()));
