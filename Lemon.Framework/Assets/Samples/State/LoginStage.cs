@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public class LoginState : GameState
     {

@@ -1,0 +1,16 @@
+{
+    "name": "LemonFramework.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9a6a3c626b329d34a9f0d86d1bb92aa0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

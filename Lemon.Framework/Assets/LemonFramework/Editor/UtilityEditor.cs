@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Text;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public static partial class UtilityEditor
     {

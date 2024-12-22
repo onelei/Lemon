@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     [CustomEditor(typeof(UIBase), true)]
     public class UIBaseEditor : UnityEditor.Editor

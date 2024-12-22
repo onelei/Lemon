@@ -1,8 +1,8 @@
 ﻿
 using UnityEngine;
-using Lemon.Framework.SkillSystem;
+using LemonFramework.SkillSystem;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public sealed class MainManager : UIBaseBehavior
     {

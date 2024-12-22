@@ -1,5 +1,5 @@
 ﻿
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public class GameState : IState
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public enum EGameStage
     {

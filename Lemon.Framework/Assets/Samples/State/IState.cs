@@ -1,4 +1,4 @@
-﻿namespace Lemon.Framework
+﻿namespace LemonFramework
 {
     public interface IState
     {

@@ -1,4 +1,4 @@
-﻿namespace Lemon.Framework.Samples.HFSM
+﻿namespace LemonFramework.Samples.HFSM
 {
     public class Sample
     {

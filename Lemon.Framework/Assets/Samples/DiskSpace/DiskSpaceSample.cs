@@ -1,8 +1,8 @@
-using Lemon.Framework.DiskSpace;
+using LemonFramework.DiskSpace;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.Framework.Samples.DiskSpace
+namespace LemonFramework.Samples.DiskSpace
 {
     public class DiskSpaceSample : MonoBehaviour
     {

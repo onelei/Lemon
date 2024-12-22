@@ -1,22 +1,22 @@
-﻿using Lemon.Framework.Log;
+﻿using LemonFramework.Log;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public class SceneEditor : UnityEditor.Editor
     {
-        [MenuItem("Lemon.Framework/场景/开始 _F5")]
+        [MenuItem("LemonFramework/场景/开始 _F5")]
         private static void OpenScene_Entry()
         {
-            OpenScene(Application.dataPath + "/Lemon.Framework/Scenes/Entry.unity");
+            OpenScene(Application.dataPath + "/LemonFramework/Scenes/Entry.unity");
         }
 
-        [MenuItem("Lemon.Framework/场景/技能编辑器 _F6")]
+        [MenuItem("LemonFramework/场景/技能编辑器 _F6")]
         private static void OpenScene_SkillSystemEditor()
         {
-            OpenScene(Application.dataPath + "/Lemon.Framework/Scenes/SkillSystemEditor.unity");
+            OpenScene(Application.dataPath + "/LemonFramework/Scenes/SkillSystemEditor.unity");
         }
 
         private static void OpenScene(string sceneName)

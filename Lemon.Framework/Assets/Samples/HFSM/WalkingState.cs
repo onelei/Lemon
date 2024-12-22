@@ -1,7 +1,7 @@
-﻿using Lemon.Framework.HFSM;
-using Lemon.Framework.Log;
+﻿using LemonFramework.HFSM;
+using LemonFramework.Log;
 
-namespace Lemon.Framework.Samples.HFSM
+namespace LemonFramework.Samples.HFSM
 {
     public class WalkingState : IState<Player>
     {

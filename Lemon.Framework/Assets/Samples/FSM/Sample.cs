@@ -1,6 +1,6 @@
-﻿using Lemon.Framework.FSM;
+﻿using LemonFramework.FSM;
 
-namespace Lemon.Framework.Samples.FSM
+namespace LemonFramework.Samples.FSM
 {
     public class Sample
     {

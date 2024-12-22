@@ -1,6 +1,6 @@
-﻿using Lemon.Framework.HFSM;
+﻿using LemonFramework.HFSM;
 
-namespace Lemon.Framework.Samples.HFSM
+namespace LemonFramework.Samples.HFSM
 {
     public class Player
     {

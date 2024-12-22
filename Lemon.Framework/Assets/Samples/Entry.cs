@@ -1,11 +1,11 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
-using Lemon.Framework.UI.Widgets;
+using LemonFramework.UI.Widgets;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lemon.Framework
+namespace LemonFramework
 {
     public class Entry : BaseBehavior
     {

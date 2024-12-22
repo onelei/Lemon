@@ -1,8 +1,8 @@
-using Lemon.Framework.Format;
+using LemonFramework.Format;
 using TMPro;
 using UnityEngine;
 
-namespace Lemon.Framework.Samples.Format
+namespace LemonFramework.Samples.Format
 {
     public class NumberFormatterSample : MonoBehaviour
     {
