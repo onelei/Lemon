@@ -158,7 +158,7 @@ namespace LemonFramework.ECS
         /// <summary>
         /// 创建场景快照
         /// </summary>
-        public SceneSnapshot CreateSnapshot()
+        public WorldSnapshot CreateSnapshot()
         {
             lock (_updateLock)
             {
@@ -172,7 +172,7 @@ namespace LemonFramework.ECS
         /// <summary>
         /// 从快照恢复场景
         /// </summary>
-        public void RestoreFromSnapshot(SceneSnapshot snapshot)
+        public void RestoreFromSnapshot(WorldSnapshot snapshot)
         {
             if (snapshot == null)
                 throw new ArgumentNullException(nameof(snapshot));
@@ -200,7 +200,7 @@ namespace LemonFramework.ECS
         /// <summary>
         /// 从文件加载快照
         /// </summary>
-        public SceneSnapshot LoadSnapshotFromFile(string filePath)
+        public WorldSnapshot LoadSnapshotFromFile(string filePath)
         {
             return _snapshotManager.LoadSnapshotFromFile(filePath);
         }

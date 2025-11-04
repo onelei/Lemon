@@ -16,47 +16,53 @@ namespace LemonFramework.ECS.Components
 
         // 实体的组件类型缓存：实体ID -> 组件类型集合
         private readonly Dictionary<int, HashSet<Type>> _entityComponentTypes = new Dictionary<int, HashSet<Type>>();
-
-        // 查询结果缓存：组件类型组合 -> 实体列表（预分配避免重复创建）
-        private readonly Dictionary<Type[], List<Entity>> _queryCache = new Dictionary<Type[], List<Entity>>();
         
         // 线程安全锁
         private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
-        private readonly object _queryCacheLock = new object();
         
         // 组件类型注册表（用于序列化）
         private static readonly Dictionary<Type, int> TypeToId = new Dictionary<Type, int>();
         private static readonly Dictionary<int, Type> IDToType = new Dictionary<int, Type>();
         private static int _nextTypeId = 0;
+        private static readonly object _typeRegistrationLock = new object(); // 类型注册锁
 
         /// <summary>
-        /// 注册组件类型（用于序列化）
+        /// 注册组件类型（用于序列化，线程安全）
         /// </summary>
         public static void RegisterComponentType<T>() where T : struct, IComponentData
         {
-            var type = typeof(T);
-            if (!TypeToId.ContainsKey(type))
+            lock (_typeRegistrationLock)
             {
-                int typeId = _nextTypeId++;
-                TypeToId[type] = typeId;
-                IDToType[typeId] = type;
+                var type = typeof(T);
+                if (!TypeToId.ContainsKey(type))
+                {
+                    int typeId = _nextTypeId++;
+                    TypeToId[type] = typeId;
+                    IDToType[typeId] = type;
+                }
             }
         }
         
         /// <summary>
-        /// 获取组件类型ID
+        /// 获取组件类型ID（线程安全）
         /// </summary>
         private static int GetTypeId(Type type)
         {
-            return TypeToId.TryGetValue(type, out var id) ? id : -1;
+            lock (_typeRegistrationLock)
+            {
+                return TypeToId.TryGetValue(type, out var id) ? id : -1;
+            }
         }
         
         /// <summary>
-        /// 从ID获取组件类型
+        /// 从ID获取组件类型（线程安全）
         /// </summary>
         private static Type GetTypeFromId(int typeId)
         {
-            return IDToType.TryGetValue(typeId, out var type) ? type : null;
+            lock (_typeRegistrationLock)
+            {
+                return IDToType.TryGetValue(typeId, out var type) ? type : null;
+            }
         }
 
         // 获取组件类型的字典，如果不存在则创建
@@ -170,83 +176,76 @@ namespace LemonFramework.ECS.Components
             }
         }
 
+        /// <summary>
+        /// 获取所有组件数据（返回快照副本，线程安全）
+        /// 注意：返回的是副本，对其修改不会影响原始数据
+        /// </summary>
         public Dictionary<Type, Dictionary<int, IComponentData>> GetAllComponentData()
         {
-            return _componentEntityComponents;
+            _lock.EnterReadLock();
+            try
+            {
+                // 创建深拷贝以避免外部修改
+                var snapshot = new Dictionary<Type, Dictionary<int, IComponentData>>();
+                foreach (var kvp in _componentEntityComponents)
+                {
+                    snapshot[kvp.Key] = new Dictionary<int, IComponentData>(kvp.Value);
+                }
+                return snapshot;
+            }
+            finally
+            {
+                _lock.ExitReadLock();
+            }
         }
  
-        // 获取符合组件组合的实体（核心优化：复用列表）
+        /// <summary>
+        /// 获取符合组件组合的实体（线程安全，返回快照副本）
+        /// 注意：返回的是快照，遍历过程中不会被其他线程修改
+        /// </summary>
         public List<Entity> GetEntitiesWithComponents(params Type[] componentTypes)
         {
-            // 使用数组作为键，需要自定义比较器
-            lock (_queryCacheLock)
+            _lock.EnterReadLock();
+            try
             {
-                // 查找缓存
-                foreach (var cacheEntry in _queryCache)
+                var resultList = new List<Entity>();
+                
+                if (componentTypes.Length == 0)
+                    return resultList;
+
+                // 从第一个组件类型获取候选实体
+                if (!_componentEntityComponents.TryGetValue(componentTypes[0], out var firstComponentDict))
+                    return resultList;
+
+                // 遍历候选实体（使用 ToArray 避免迭代期间集合被修改）
+                foreach (var entityId in firstComponentDict.Keys)
                 {
-                    if (ArraysEqual(cacheEntry.Key, componentTypes))
+                    // 检查实体是否拥有所有需要的组件类型
+                    if (_entityComponentTypes.TryGetValue(entityId, out var entityTypes))
                     {
-                        // 清空并重用列表，避免创建新列表
-                        cacheEntry.Value.Clear();
-                        return FindEntitiesMatching(cacheEntry.Value, componentTypes);
-                    }
-                }
-
-                // 没有缓存则创建新列表
-                var newList = new List<Entity>();
-                _queryCache[componentTypes] = newList;
-                return FindEntitiesMatching(newList, componentTypes);
-            }
-        }
-
-        // 实际查找符合条件的实体
-        private List<Entity> FindEntitiesMatching(List<Entity> resultList, Type[] componentTypes)
-        {
-            if (componentTypes.Length == 0)
-                return resultList;
-
-            // 从第一个组件类型获取候选实体
-            if (!_componentEntityComponents.TryGetValue(componentTypes[0], out var firstComponentDict))
-                return resultList;
-
-            foreach (var entityId in firstComponentDict.Keys)
-            {
-                // 检查实体是否拥有所有需要的组件类型
-                if (_entityComponentTypes.TryGetValue(entityId, out var entityTypes))
-                {
-                    bool hasAllComponents = true;
-                    for (int i = 1; i < componentTypes.Length; i++)
-                    {
-                        if (!entityTypes.Contains(componentTypes[i]))
+                        bool hasAllComponents = true;
+                        for (int i = 1; i < componentTypes.Length; i++)
                         {
-                            hasAllComponents = false;
-                            break;
+                            if (!entityTypes.Contains(componentTypes[i]))
+                            {
+                                hasAllComponents = false;
+                                break;
+                            }
+                        }
+
+                        if (hasAllComponents)
+                        {
+                            resultList.Add(new Entity(entityId));
                         }
                     }
-
-                    if (hasAllComponents)
-                    {
-                        resultList.Add(new Entity(entityId));
-                    }
                 }
+
+                return resultList;
             }
-
-            return resultList;
-        }
-
-        // 比较两个数组是否相等
-        private bool ArraysEqual(Type[] a, Type[] b)
-        {
-            if (a.Length != b.Length)
-                return false;
-
-            for (int i = 0; i < a.Length; i++)
+            finally
             {
-                if (a[i] != b[i])
-                    return false;
+                _lock.ExitReadLock();
             }
-
-            return true;
         }
         
         /// <summary>
@@ -259,10 +258,6 @@ namespace LemonFramework.ECS.Components
             {
                 _componentEntityComponents.Clear();
                 _entityComponentTypes.Clear();
-                lock (_queryCacheLock)
-                {
-                    _queryCache.Clear();
-                }
             }
             finally
             {
@@ -328,7 +323,9 @@ namespace LemonFramework.ECS.Components
             _lock.EnterWriteLock();
             try
             {
-                Clear();
+                // 清空数据
+                _componentEntityComponents.Clear();
+                _entityComponentTypes.Clear();
                 
                 using (var memoryStream = new MemoryStream(data))
                 using (var reader = new BinaryReader(memoryStream))
