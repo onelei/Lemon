@@ -50,7 +50,10 @@ namespace LemonFrameSync.Logger
                 if (_instance != null) return _instance;
                 lock (Lock)
                 {
-                    _instance ??= new LogManager();
+                    if (_instance == null)
+                    {
+                        _instance = new LogManager();
+                    }
                 }
 
                 return _instance;
@@ -66,7 +69,7 @@ namespace LemonFrameSync.Logger
             // 设置日志目录
             var dir = Application.persistentDataPath;
 #if UNITY_EDITOR
-            dir = $"{Application.dataPath}../";
+            dir = $"{Application.dataPath}/../";
 #endif
             string logDir = logDirectory ?? Path.Combine(dir, "FrameSyncLogs");
 
