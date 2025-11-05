@@ -275,10 +275,11 @@ namespace LemonFramework.Demo
             GUILayout.Label("=== 输入录制演示 ===", _titleStyle);
             GUILayout.Space(10);
             
-            GUILayout.Label($"当前帧: {_timeData.Frame}", _normalStyle);
-            GUILayout.Label($"Unity FPS: {(int)(1f / Time.deltaTime)}", _normalStyle);
-            GUILayout.Label($"状态: {GetStateText()}", _normalStyle);
-            GUILayout.Label($"当前输入: ({_currentInput.x:F2}, {_currentInput.y:F2})", _normalStyle);
+             GUILayout.Label($"当前帧: {_timeData.Frame}", _normalStyle);
+             GUILayout.Label($"Unity FPS: {(int)(1f / Time.deltaTime)}", _normalStyle);
+             GUILayout.Label($"状态: {GetStateText()}", _normalStyle);
+             GUILayout.Label($"当前输入: ({_currentInput.x:F2}, {_currentInput.y:F2})", _normalStyle);
+             GUILayout.Label($"关键帧缓存: {_inputPlayer.KeyframeCount}", _normalStyle);
             
             GUILayout.Space(10);
             

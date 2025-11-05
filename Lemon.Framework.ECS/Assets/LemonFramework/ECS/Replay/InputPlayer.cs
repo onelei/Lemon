@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using LemonFramework.ECS.Snapshot;
 using UnityEngine;
 
 namespace LemonFramework.ECS.Replay
@@ -14,6 +16,10 @@ namespace LemonFramework.ECS.Replay
         private int _currentFrame;
         private TimeData _playbackTimeData;
         private float _accumulatedTime;
+        
+        // 运行时关键帧缓存（用于加速跳转）
+        private Dictionary<int, WorldSnapshot> _runtimeKeyframes;
+        private int _keyframeInterval = 300; // 每300帧（5秒@60fps）保存一个关键帧
         
         /// <summary>
         /// 播放速度倍数（1.0 = 正常速度）
@@ -81,6 +87,15 @@ namespace LemonFramework.ECS.Replay
         {
             _world = world;
             _playbackTimeData = new TimeData(60);
+            _runtimeKeyframes = new Dictionary<int, WorldSnapshot>();
+        }
+        
+        /// <summary>
+        /// 设置关键帧间隔（帧数）
+        /// </summary>
+        public void SetKeyframeInterval(int interval)
+        {
+            _keyframeInterval = Mathf.Max(60, interval); // 最少1秒
         }
         
         /// <summary>
@@ -96,6 +111,9 @@ namespace LemonFramework.ECS.Replay
             _currentReplay = replay;
             _currentFrame = replay.StartFrame;
             _playbackTimeData = new TimeData(replay.TargetFrameRate);
+            
+            // 清空之前的关键帧缓存
+            _runtimeKeyframes.Clear();
             
             // 恢复到初始状态
             if (replay.InitialSnapshot != null)
@@ -150,6 +168,9 @@ namespace LemonFramework.ECS.Replay
             _currentFrame = _currentReplay?.StartFrame ?? 0;
             _accumulatedTime = 0;
             
+            // 清空关键帧缓存
+            _runtimeKeyframes.Clear();
+            
             // 恢复到初始状态
             if (_currentReplay?.InitialSnapshot != null)
             {
@@ -187,6 +208,12 @@ namespace LemonFramework.ECS.Replay
                 
                 _currentFrame++;
                 
+                // 自动保存关键帧（每隔一定帧数）
+                if ((_currentFrame - _currentReplay.StartFrame) % _keyframeInterval == 0)
+                {
+                    SaveRuntimeKeyframe(_currentFrame);
+                }
+                
                 // 检查是否到达结尾
                 if (_currentFrame > _currentReplay.EndFrame)
                 {
@@ -205,7 +232,7 @@ namespace LemonFramework.ECS.Replay
         }
         
         /// <summary>
-        /// 跳转到指定帧
+        /// 跳转到指定帧（智能选择最近的关键帧）
         /// </summary>
         public void SeekToFrame(int frameNumber)
         {
@@ -217,9 +244,24 @@ namespace LemonFramework.ECS.Replay
             
             frameNumber = Mathf.Clamp(frameNumber, _currentReplay.StartFrame, _currentReplay.EndFrame);
             
-            // 恢复到初始状态
-            _world.RestoreFromSnapshot(_currentReplay.InitialSnapshot);
-            _currentFrame = _currentReplay.StartFrame;
+            // 找到最近的关键帧（小于等于目标帧）
+            WorldSnapshot startSnapshot;
+            int startFrame;
+            
+            if (TryGetNearestKeyframe(frameNumber, out startSnapshot, out startFrame))
+            {
+                // 从最近的关键帧开始
+                _world.RestoreFromSnapshot(startSnapshot);
+                _currentFrame = startFrame;
+                Debug.Log($"<color=cyan>从关键帧 {startFrame} 快进到 {frameNumber}（跳过 {startFrame - _currentReplay.StartFrame} 帧）</color>");
+            }
+            else
+            {
+                // 没有合适的关键帧，从初始状态开始
+                _world.RestoreFromSnapshot(_currentReplay.InitialSnapshot);
+                _currentFrame = _currentReplay.StartFrame;
+            }
+            
             _playbackTimeData.Frame = _currentFrame;
             
             // 快进到目标帧
@@ -229,10 +271,67 @@ namespace LemonFramework.ECS.Replay
                 _playbackTimeData.Frame = _currentFrame;
                 _world.Update(_playbackTimeData);
                 _currentFrame++;
+                
+                // 在快进过程中也保存关键帧
+                if ((_currentFrame - _currentReplay.StartFrame) % _keyframeInterval == 0)
+                {
+                    SaveRuntimeKeyframe(_currentFrame);
+                }
             }
             
-            Debug.Log($"<color=cyan>跳转到帧 {frameNumber}</color>");
+            Debug.Log($"<color=cyan>跳转到帧 {frameNumber} 完成</color>");
         }
+        
+        /// <summary>
+        /// 保存运行时关键帧
+        /// </summary>
+        private void SaveRuntimeKeyframe(int frameNumber)
+        {
+            if (!_runtimeKeyframes.ContainsKey(frameNumber))
+            {
+                var snapshot = _world.CreateSnapshot();
+                snapshot.FrameNumber = frameNumber;
+                _runtimeKeyframes[frameNumber] = snapshot;
+                //Debug.Log($"<color=green>保存关键帧: {frameNumber}</color>");
+            }
+        }
+        
+        /// <summary>
+        /// 获取最近的关键帧（小于等于目标帧）
+        /// </summary>
+        private bool TryGetNearestKeyframe(int targetFrame, out WorldSnapshot snapshot, out int keyframeNumber)
+        {
+            snapshot = null;
+            keyframeNumber = _currentReplay.StartFrame;
+            
+            int nearestFrame = -1;
+            
+            foreach (var kvp in _runtimeKeyframes)
+            {
+                if (kvp.Key <= targetFrame && kvp.Key > nearestFrame)
+                {
+                    nearestFrame = kvp.Key;
+                    snapshot = kvp.Value;
+                    keyframeNumber = kvp.Key;
+                }
+            }
+            
+            return nearestFrame >= 0;
+        }
+        
+        /// <summary>
+        /// 清除所有运行时关键帧缓存
+        /// </summary>
+        public void ClearKeyframeCache()
+        {
+            _runtimeKeyframes.Clear();
+            Debug.Log("<color=yellow>关键帧缓存已清除</color>");
+        }
+        
+        /// <summary>
+        /// 获取关键帧数量
+        /// </summary>
+        public int KeyframeCount => _runtimeKeyframes.Count;
         
         /// <summary>
         /// 跳转到指定进度（0.0 - 1.0）
