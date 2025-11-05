@@ -11,17 +11,17 @@ using UnityEngine;
 namespace LemonFramework.Demo
 {
     /// <summary>
-    /// 录像功能演示
-    /// 支持录制、保存、播放、跳帧、加速播放
+    /// 基于输入录制的录像演示
+    /// 只记录玩家输入，文件更小，适合网络游戏回放
     /// </summary>
-    public class ReplayDemo : MonoBehaviour
+    public class InputReplayDemo : MonoBehaviour
     {
         [Header("ECS设置")]
         [Tooltip("创建的实体数量")] public int entityCount = 5;
         [Tooltip("实体预制体")] public GameObject entityPrefab;
         
         [Header("录像设置")]
-        [Tooltip("录像文件保存路径")] public string replayFileName = "gameplay_replay.dat";
+        [Tooltip("录像文件保存路径")] public string replayFileName = "input_replay.dat";
         
         private World _ecsWorld;
         private Thread _ecsThread;
@@ -31,9 +31,9 @@ namespace LemonFramework.Demo
         private EntityActorManager _actorManager;
         private Entity _controlledEntity;
         
-        // 录像系统
-        private ReplayRecorder _recorder;
-        private ReplayPlayer _player;
+        // 基于输入的录像系统
+        private InputRecorder _inputRecorder;
+        private InputPlayer _inputPlayer;
         
         // UI样式
         private GUIStyle _titleStyle;
@@ -50,6 +50,9 @@ namespace LemonFramework.Demo
             Idle            // 空闲
         }
         private DemoState _currentState = DemoState.Idle;
+        
+        // 当前帧的输入
+        private Vector2 _currentInput;
         
         void Start()
         {
@@ -69,15 +72,15 @@ namespace LemonFramework.Demo
             CreateEntities();
             
             // 初始化录像系统
-            _recorder = new ReplayRecorder(_ecsWorld);
-            _player = new ReplayPlayer(_ecsWorld);
+            _inputRecorder = new InputRecorder(_ecsWorld);
+            _inputPlayer = new InputPlayer(_ecsWorld);
             
             // 启动ECS线程
             StartEcsThread();
             
-            Debug.Log("=== 录像功能演示已启动 ===");
+            Debug.Log("=== 输入录制演示已启动 ===");
+            Debug.Log("只记录输入，文件更小！");
             Debug.Log("使用WASD控制红色立方体");
-            Debug.Log("使用右侧按钮控制录像功能");
         }
         
         void InitializeStyles()
@@ -110,13 +113,14 @@ namespace LemonFramework.Demo
         
         void InitializeEcs()
         {
-            _ecsWorld = new World("ReplayWorld");
+            _ecsWorld = new World("InputReplayWorld");
             _timeData = new TimeData(60);
             
             _actorManager.SetWorld(_ecsWorld);
             
-            // 添加移动系统
-            _ecsWorld.AddSystem(new CircleMovementSystem());
+            // 添加移动系统 - 使用支持输入的系统
+            _ecsWorld.AddSystem(new PlayerInputMovementSystem(this));
+            //_ecsWorld.AddSystem(new CircleMovementSystem());
         }
         
         void CreateEntities()
@@ -179,7 +183,7 @@ namespace LemonFramework.Demo
             _ecsThread = new Thread(EcsUpdateLoop)
             {
                 IsBackground = true,
-                Name = "ECS-Replay-Thread"
+                Name = "ECS-InputReplay-Thread"
             };
             _ecsThread.Start();
         }
@@ -188,19 +192,20 @@ namespace LemonFramework.Demo
         {
             while (_isRunning)
             {
-                // 只在录制或空闲状态下更新ECS（播放时不更新，由Player控制）
+                // 录制或空闲状态：正常更新
                 if (_currentState == DemoState.Recording || _currentState == DemoState.Idle)
                 {
                     _ecsWorld.Update(_timeData);
                     
-                    // 如果正在录制，记录当前帧
-                    if (_currentState == DemoState.Recording && _recorder.IsRecording)
+                    // 录制输入
+                    if (_currentState == DemoState.Recording && _inputRecorder.IsRecording)
                     {
-                        _recorder.RecordFrame();
+                        _inputRecorder.RecordInput(_currentInput);
                     }
                     
                     _timeData.Frame++;
                 }
+                // 播放状态：由InputPlayer控制更新
                 
                 Thread.Sleep((int)_timeData.MilliSeconds);
             }
@@ -208,50 +213,55 @@ namespace LemonFramework.Demo
         
         void Update()
         {
-            // 只在非播放状态下允许玩家输入
+            // 非播放状态：读取玩家输入
             if (_currentState != DemoState.Playing)
             {
-                HandlePlayerInput();
+                _currentInput = GetPlayerInput();
             }
-            
-            // 播放状态下更新播放器
-            if (_currentState == DemoState.Playing && _player.IsPlaying)
+            else
             {
-                _player.Update(Time.deltaTime);
-            }
-        }
-        
-        void HandlePlayerInput()
-        {
-            if (_controlledEntity.Id == 0) return;
-            
-            Vector3 movement = Vector3.zero;
-            float speed = 5f * Time.deltaTime;
-            
-            if (Input.GetKey(KeyCode.W)) movement.y += speed;
-            if (Input.GetKey(KeyCode.S)) movement.y -= speed;
-            if (Input.GetKey(KeyCode.A)) movement.x -= speed;
-            if (Input.GetKey(KeyCode.D)) movement.x += speed;
-            
-            if (movement != Vector3.zero)
-            {
-                if (_ecsWorld.ComponentManager.TryGetComponent(_controlledEntity, out EcsTransform transform))
+                // 播放状态：从录像读取输入
+                if (_inputPlayer.IsPlaying)
                 {
-                    transform.Position += movement;
-                    _ecsWorld.ComponentManager.SetComponent(_controlledEntity, transform);
+                    _inputPlayer.Update(Time.deltaTime);
+                    _currentInput = _inputPlayer.CurrentInput.Movement;
                 }
             }
         }
         
+        Vector2 GetPlayerInput()
+        {
+            Vector2 input = Vector2.zero;
+            
+            if (Input.GetKey(KeyCode.W)) input.y += 1f;
+            if (Input.GetKey(KeyCode.S)) input.y -= 1f;
+            if (Input.GetKey(KeyCode.A)) input.x -= 1f;
+            if (Input.GetKey(KeyCode.D)) input.x += 1f;
+            
+            return input;
+        }
+        
+        /// <summary>
+        /// 获取当前输入（供System调用）
+        /// </summary>
+        public Vector2 GetCurrentInput()
+        {
+            return _currentInput;
+        }
+        
+        /// <summary>
+        /// 获取受控实体
+        /// </summary>
+        public Entity GetControlledEntity()
+        {
+            return _controlledEntity;
+        }
+        
         void OnGUI()
         {
-            // 左侧信息面板
             DrawInfoPanel();
-            
-            // 右侧控制面板
             DrawControlPanel();
             
-            // 底部播放控制条
             if (_currentState == DemoState.Playing || _currentState == DemoState.Paused)
             {
                 DrawPlaybackControls();
@@ -260,36 +270,49 @@ namespace LemonFramework.Demo
         
         void DrawInfoPanel()
         {
-            GUILayout.BeginArea(new Rect(10, 10, 350, 300));
+            GUILayout.BeginArea(new Rect(10, 10, 400, 350));
             
-            GUILayout.Label("=== 录像功能演示 ===", _titleStyle);
+            GUILayout.Label("=== 输入录制演示 ===", _titleStyle);
             GUILayout.Space(10);
             
             GUILayout.Label($"当前帧: {_timeData.Frame}", _normalStyle);
             GUILayout.Label($"Unity FPS: {(int)(1f / Time.deltaTime)}", _normalStyle);
             GUILayout.Label($"状态: {GetStateText()}", _normalStyle);
+            GUILayout.Label($"当前输入: ({_currentInput.x:F2}, {_currentInput.y:F2})", _normalStyle);
             
             GUILayout.Space(10);
             
             if (_currentState == DemoState.Recording)
             {
                 GUILayout.Label("=== 录制信息 ===", _titleStyle);
-                GUILayout.Label($"已录制帧数: {_recorder.RecordedFrames}", _normalStyle);
-                float duration = _recorder.RecordedFrames / 60f;
+                GUILayout.Label($"总帧数: {_inputRecorder.RecordedFrames}", _normalStyle);
+                GUILayout.Label($"输入帧数: {_inputRecorder.InputFrameCount}", _normalStyle);
+                
+                float compression = _inputRecorder.RecordedFrames > 0 
+                    ? (1f - (float)_inputRecorder.InputFrameCount / _inputRecorder.RecordedFrames) * 100 
+                    : 0;
+                GUILayout.Label($"压缩率: {compression:F1}%", _normalStyle);
+                
+                float duration = _inputRecorder.RecordedFrames / 60f;
                 GUILayout.Label($"录制时长: {duration:F2} 秒", _normalStyle);
             }
             else if (_currentState == DemoState.Playing || _currentState == DemoState.Paused)
             {
                 GUILayout.Label("=== 播放信息 ===", _titleStyle);
-                GUILayout.Label($"当前帧: {_player.CurrentFrameIndex}/{_player.TotalFrames}", _normalStyle);
-                GUILayout.Label($"播放时间: {_player.CurrentTime:F2}/{_player.TotalDuration:F2} 秒", _normalStyle);
-                GUILayout.Label($"播放速度: {_player.PlaybackSpeed}x", _normalStyle);
-                GUILayout.Label($"进度: {(_player.Progress * 100):F1}%", _normalStyle);
+                GUILayout.Label($"当前帧: {_inputPlayer.CurrentFrame}", _normalStyle);
+                GUILayout.Label($"播放时间: {_inputPlayer.CurrentTime:F2}/{_inputPlayer.TotalDuration:F2} 秒", _normalStyle);
+                GUILayout.Label($"播放速度: {_inputPlayer.PlaybackSpeed}x", _normalStyle);
+                GUILayout.Label($"进度: {(_inputPlayer.Progress * 100):F1}%", _normalStyle);
             }
             
             GUILayout.Space(10);
-            GUILayout.Label("控制:", _titleStyle);
-            GUILayout.Label("WASD - 移动红色立方体", _normalStyle);
+            GUILayout.Label("=== 优势 ===", _titleStyle);
+            GUILayout.Label("• 文件体积小（只记录输入）", _normalStyle);
+            GUILayout.Label("• 适合网络传输", _normalStyle);
+            GUILayout.Label("• 确定性回放", _normalStyle);
+            
+            GUILayout.Space(10);
+            GUILayout.Label("控制: WASD - 移动红色立方体", _normalStyle);
             
             GUILayout.EndArea();
         }
@@ -305,7 +328,7 @@ namespace LemonFramework.Demo
             {
                 if (GUILayout.Button("开始录制", _buttonStyle))
                 {
-                    _recorder.StartRecording($"录像_{System.DateTime.Now:HHmmss}", 60);
+                    _inputRecorder.StartRecording($"输入录像_{System.DateTime.Now:HHmmss}", 60);
                     _currentState = DemoState.Recording;
                 }
             }
@@ -313,7 +336,7 @@ namespace LemonFramework.Demo
             {
                 if (GUILayout.Button("停止录制", _buttonStyle))
                 {
-                    var replay = _recorder.StopRecording();
+                    var replay = _inputRecorder.StopRecording();
                     _currentState = DemoState.Idle;
                 }
                 
@@ -321,7 +344,7 @@ namespace LemonFramework.Demo
                 
                 if (GUILayout.Button("取消录制", _buttonStyle))
                 {
-                    _recorder.CancelRecording();
+                    _inputRecorder.CancelRecording();
                     _currentState = DemoState.Idle;
                 }
             }
@@ -350,7 +373,7 @@ namespace LemonFramework.Demo
             {
                 if (GUILayout.Button("播放", _buttonStyle))
                 {
-                    _player.Play();
+                    _inputPlayer.Play();
                     _currentState = DemoState.Playing;
                 }
             }
@@ -358,7 +381,7 @@ namespace LemonFramework.Demo
             {
                 if (GUILayout.Button("暂停", _buttonStyle))
                 {
-                    _player.Pause();
+                    _inputPlayer.Pause();
                     _currentState = DemoState.Paused;
                 }
             }
@@ -367,7 +390,7 @@ namespace LemonFramework.Demo
             
             if (GUILayout.Button("停止", _buttonStyle))
             {
-                _player.Stop();
+                _inputPlayer.Stop();
                 _currentState = DemoState.Idle;
             }
             
@@ -377,27 +400,27 @@ namespace LemonFramework.Demo
             
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("0.25x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(0.25f);
+                _inputPlayer.SetPlaybackSpeed(0.25f);
             if (GUILayout.Button("0.5x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(0.5f);
+                _inputPlayer.SetPlaybackSpeed(0.5f);
             GUILayout.EndHorizontal();
             
             GUILayout.Space(3);
             
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("1x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(1.0f);
+                _inputPlayer.SetPlaybackSpeed(1.0f);
             if (GUILayout.Button("2x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(2.0f);
+                _inputPlayer.SetPlaybackSpeed(2.0f);
             GUILayout.EndHorizontal();
             
             GUILayout.Space(3);
             
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("4x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(4.0f);
+                _inputPlayer.SetPlaybackSpeed(4.0f);
             if (GUILayout.Button("8x", _smallButtonStyle))
-                _player.SetPlaybackSpeed(8.0f);
+                _inputPlayer.SetPlaybackSpeed(8.0f);
             GUILayout.EndHorizontal();
             
             GUILayout.Space(10);
@@ -405,26 +428,13 @@ namespace LemonFramework.Demo
             GUILayout.Space(5);
             
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("◄◄ 前10帧", _smallButtonStyle))
-            {
-                _player.SeekToFrameIndex(_player.CurrentFrameIndex - 10);
-            }
-            if (GUILayout.Button("后10帧 ►►", _smallButtonStyle))
-            {
-                _player.SeekToFrameIndex(_player.CurrentFrameIndex + 10);
-            }
-            GUILayout.EndHorizontal();
-            
-            GUILayout.Space(3);
-            
-            GUILayout.BeginHorizontal();
             if (GUILayout.Button("◄ 上一帧", _smallButtonStyle))
             {
-                _player.StepBackward();
+                _inputPlayer.StepBackward();
             }
             if (GUILayout.Button("下一帧 ►", _smallButtonStyle))
             {
-                _player.StepForward();
+                _inputPlayer.StepForward();
             }
             GUILayout.EndHorizontal();
             
@@ -442,23 +452,20 @@ namespace LemonFramework.Demo
             
             GUILayout.Label("播放进度:", _normalStyle);
             
-            // 进度条
             float progress = GUI.HorizontalSlider(
                 new Rect(0, 25, panelWidth, 20),
-                _player.Progress,
+                _inputPlayer.Progress,
                 0f,
                 1f
             );
             
-            // 如果用户拖动进度条
-            if (Mathf.Abs(progress - _player.Progress) > 0.001f)
+            if (Mathf.Abs(progress - _inputPlayer.Progress) > 0.001f)
             {
-                _player.SeekToProgress(progress);
+                _inputPlayer.SeekToProgress(progress);
             }
             
-            // 时间显示
             GUILayout.Space(25);
-            string timeText = $"{_player.CurrentTime:F2}s / {_player.TotalDuration:F2}s";
+            string timeText = $"{_inputPlayer.CurrentTime:F2}s / {_inputPlayer.TotalDuration:F2}s";
             GUILayout.Label(timeText, _normalStyle);
             
             GUILayout.EndArea();
@@ -466,7 +473,7 @@ namespace LemonFramework.Demo
         
         void SaveReplayToFile()
         {
-            if (_recorder.CurrentReplay == null)
+            if (_inputRecorder.CurrentReplay == null)
             {
                 Debug.LogWarning("没有可保存的录像！请先录制。");
                 return;
@@ -477,7 +484,7 @@ namespace LemonFramework.Demo
             dir = $"{Application.dataPath}/../";
 #endif
             string filePath = dir + replayFileName;
-            _recorder.SaveReplay(filePath);
+            _inputRecorder.SaveReplay(filePath);
         }
         
         void LoadReplayFromFile()
@@ -490,7 +497,7 @@ namespace LemonFramework.Demo
             
             if (System.IO.File.Exists(filePath))
             {
-                _player.LoadReplayFromFile(filePath);
+                _inputPlayer.LoadReplayFromFile(filePath);
                 _currentState = DemoState.Idle;
             }
             else
@@ -526,7 +533,39 @@ namespace LemonFramework.Demo
             _ecsWorld?.Dispose();
             LogManager.Instance.Shutdown();
             
-            Debug.Log("录像演示已停止");
+            Debug.Log("输入录制演示已停止");
+        }
+    }
+    
+    /// <summary>
+    /// 玩家输入控制系统
+    /// 从Demo中读取输入并应用到实体
+    /// </summary>
+    public class PlayerInputMovementSystem : ComponentSystem
+    {
+        private InputReplayDemo _demo;
+        
+        public PlayerInputMovementSystem(InputReplayDemo demo)
+        {
+            _demo = demo;
+        }
+        
+        protected override void OnUpdate(TimeData timeData)
+        {
+            var controlledEntity = _demo.GetControlledEntity();
+            if (controlledEntity.Id == 0) return;
+            
+            var input = _demo.GetCurrentInput();
+            if (input.sqrMagnitude < 0.001f) return;
+            
+            if (ComponentManager.TryGetComponent(controlledEntity, out EcsTransform transform))
+            {
+                float speed = 0.083f; // 5f / 60f (5 units per second at 60fps)
+                Vector3 movement = new Vector3(input.x, input.y, 0) * speed;
+                
+                transform.Position += movement;
+                ComponentManager.SetComponent(controlledEntity, transform);
+            }
         }
     }
 }

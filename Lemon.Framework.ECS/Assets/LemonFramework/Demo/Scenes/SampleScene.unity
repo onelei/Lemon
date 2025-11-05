@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 2063693239}
   - component: {fileID: 2063693238}
   m_Layer: 0
-  m_Name: ReplayDemo
+  m_Name: InputReplayDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,10 +415,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2063693237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272db7559b76a304ba1ed23512a251fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityCount: 5
+  entityCount: 1
   entityPrefab: {fileID: 0}
   replayFileName: gameplay_replay.dat
 --- !u!4 &2063693239
